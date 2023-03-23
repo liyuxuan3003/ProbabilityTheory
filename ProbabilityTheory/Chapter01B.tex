@@ -1,0 +1,102 @@
+\section{随机事件与样本空间}
+
+\subsection{样本空间和样本点}
+关于\fancyref{def:随机试验}中提到的一个随机试验，尽管在每次试验前并不能预知试验的结果，但试验的所有可能组成的集合是已知的，这种集合，可以是有限集，可以是无限集。
+\begin{BoxDefinition}[样本空间]
+    定义随机试验$E$每个可能的结果组成的集合$S$，为$E$的\uwave{样本空间}（Sample Space）
+    \begin{Equation}
+        S=\qty{e_1,e_2,\cdots,e_i,\cdots}
+    \end{Equation}
+\end{BoxDefinition}
+\begin{BoxDefinition}[样本点]
+    定义随机试验$E$的每个结果$e_i$，为$E$的\uwave{样本点}（Sample Point）。
+\end{BoxDefinition}
+
+例如\xref{sec:随机试验}中列出的试验$E_1,E_2,E_2,E_3$的样本空间就是
+\begin{Gather}*[6pt]
+    S_1:\qty{H,T}\\
+    S_2:\qty{HHH,HHT,HTH,HTT,THH,THT,TTH,TTT}\\
+    S_3:\qty{1,2,3,4,5,6}\\
+    S_4:\qty{t\mid t\geq 0}
+\end{Gather}
+而上述样本空间的集合中的每个元素，就是样本点。
+
+\subsection{随机事件}
+在实际中，当进行随机试验时，我们常常关心某些样本点所组成的集合。
+\begin{BoxDefinition}[随机事件]
+    \uwave{随机事件}（Event）是随机试验$E$的样本空间$S$的一个子集，常记为$A$
+
+    在每次试验$E$中，当且仅当该子集$A$中一个样本点发生，我们称这一事件$A$发生。
+\end{BoxDefinition}
+
+例如，关于\xref{sec:随机试验}中掷骰子的随机试验$E_3$
+\begin{itemize}
+    \item 事件$A_1$是掷出点数$2$，则$A_1=\qty{2}$
+    \item 事件$A_2$是掷出偶数点数，则$A_2=\qty{2,4,6}$
+\end{itemize}
+特别的，我们赋予那些仅包含一个样本点的事件一个特别的名称，即基本事件。
+\begin{BoxDefinition}[基本事件]
+    \uwave{基本事件}（Elementary Event）是指仅包含一个样本点的事件。
+\end{BoxDefinition}
+\begin{itemize}
+    \item 掷骰子的试验$E_3$中，基本事件有六个，有$\qty{1},\qty{2},\qty{3},\qty{4},\qty{5},\qty{6}$
+    \item 掷硬币的试验$E_1$中，基本事件有两个，有$\qty{H},\qty{T}$
+\end{itemize}
+
+% 除此之外，还有两个特别的事件需要定义
+\begin{BoxDefinition}[必然事件]
+    定义\uwave{必然事件}（Certain Event）为样本空间$S$自身，它是$S$的子集。
+\end{BoxDefinition}
+\begin{BoxDefinition}[不可能事件]
+    定义\uwave{不可能事件}（Impossible Event）为空集$\empty$，它是$S$的子集。
+\end{BoxDefinition}
+
+\subsection{随机事件的关系与运算}
+我们说，\empx{事件是一个集合}，因此，事件间的关系和运算可以按照集合论中集合之间的关系和运算来处理，下面，我们将根据“事件发生”的含义，给出这些运算在概率论中的具体含义。
+
+\begin{BoxDefinition}[事件的包含]
+    若$A\subset B$，则称事件$B$包含事件$A$，即事件$A$发生必然导致事件$B$发生。
+\end{BoxDefinition}
+
+\begin{BoxDefinition}[事件的相等]
+    若$A\subset B$又有$B\subset A$，则称事件$B$等于事件$A$，记为$A=B$。
+\end{BoxDefinition}
+
+\begin{BoxDefinition}[和事件]
+    定义$A,B$的\uwave{和事件}（Union of Events）
+    \begin{Equation}
+        A\cup B=\qty{x\mid x\in A~\text{or}~x\in B}
+    \end{Equation}
+    其意义是，当且仅当$A,B$至少有一个发生时，和事件$A\cap B$发生。
+\end{BoxDefinition}
+
+\begin{BoxDefinition}[积事件]*
+    定义$A,B$的\uwave{积事件}（Intersection of Events）
+    \begin{Equation}
+        A\cap B=\qty{x\mid x\in A~\text{and}~x\in B}
+    \end{Equation}
+    其意义是，当且仅当$A,B$同时发生时，积事件$A\cup B$发生。
+\end{BoxDefinition}
+
+\begin{BoxDefinition}[差事件]
+    定义$A,B$的\uwave{差事件}（Set Difference）
+    \begin{Equation}
+        A-B=\qty{x\mid x\in A~\text{and}~x\notin B}
+    \end{Equation}
+    其意义是，当且仅当$A$发生且$B$不发生，差事件$A-B$发生。
+\end{BoxDefinition}
+
+\begin{BoxDefinition}[互斥事件]
+    若事件$A.B$满足下式，则$A,B$是\uwave{互斥}的
+    \begin{Equation}
+        A\cap B=\empty
+    \end{Equation}
+\end{BoxDefinition}
+
+\begin{BoxDefinition}[对立事件]
+    若事件$A.B$满足下式，则$A,B$是\uwave{对立}的
+    \begin{Equation}
+        A\cap B=\empty\qquad A\cup B=S
+    \end{Equation}
+\end{BoxDefinition}
+很明显，对立事件是互斥事件的一种特殊情况，对立必然互斥，但对立还要求“除了$A,B$没有更多情况”，因此，我们可以将$A$唯一的那个对立事件记为$\bar{A}$，显然其满足$\bar{A}=S-A$。
