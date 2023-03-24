@@ -1,0 +1,195 @@
+\section{频率与概率}
+对于一个事件来说，它在一次试验中可能会发生，也可能不会发生。我们常常希望知道某些事件在一次试验中发生的可能性有多大，我们希望找到一个合适的数来表征可能性的大小。为此，首先引入频率，它描述了事件发生的频繁程度，进而引出表征可能性大小的数，即概率。
+
+\subsection{频率}
+\begin{BoxDefinition}[频率]*
+    在相同条件下，进行$n$次试验，记$n_A$为其中事件$A$发生的次数。
+
+    定义$n_A$为$A$的\uwave{频数}（Frequency）,定义$A$的\uwave{频率}（Relative Frequency）为\footnote[2]{需要注意，虽然物理上frequency就是频率，但统计上frequency是指频数。}
+    \begin{Equation}
+        f_n(A)=\frac{n_\text{A}}{n}
+    \end{Equation}
+    其中$f_n(A)$代表的是$A$在进行$n$次试验时的频数。
+\end{BoxDefinition}\goodbreak
+
+很容易验证，频率应具有以下的性质
+\begin{BoxProperty}[频率的性质]
+    频率具有以下基本性质
+    \begin{enumerate}
+        \item 频率总是在$0$和$1$间，即$0\leq f_n(A)\leq 1$
+        \item 频率对于必然事件而言总是$1$，即$f_n(S)=1$
+        \item 若$A_1,A_2,\cdots,A_n$是两两不相容的事件，则
+        \begin{Equation}
+            f_n(A_1\cup A_2\cup\cdots\cup A_n)=f_n(A_1)+f_n(A_2)+\cdots +f_n(A_n)
+        \end{Equation}
+    \end{enumerate}
+\end{BoxProperty}
+
+频率越大，事件发生的越频繁。但是，频率对于一个试验来说并不是一个唯一的值，进行的试验次数$n$不同，或者进行试验次数$n$相同的两组试验，得到的频率可能都是不同的，因此用频率表示可能性是不合适的。然而大量试验证实，当重复试验的次数$n$逐渐增大趋于无穷大时，频率$f_n(A)$呈现出稳定性，逐渐稳定于某个常数。这种频率稳定性即通常所说的统计规律性，让试验重复大量次数，计算频率$f_n(A)$，以它表征事件$A$发生的可能性是非常合适的。
+
+然而在实际中，我们不可能对每一个事件都做大量的试验，因此，为了理论研究的需要，我们从频率的稳定性和频率和性质出发，给出如下表征事件发生可能性大小的概率的定义。
+
+\subsection{概率}
+\begin{BoxDefinition}[概率]
+    若对于随机试验$E$的每一事件$A$赋予一个实数$P(A)$，且集合函数$P(\cdot)$满足
+    \begin{enumerate}
+        \item \textbf{非负性}：对于每一个事件$A$，有$P(A)\geq 0$
+        \item \textbf{规范性}：对于必然事件$S$，有$P(S)=1$
+        \item \textbf{可列可加性}：设$A_1,A_2,\cdots$是两两互不相容的事件，则
+        \begin{Equation}
+            P\qty(\BigCup[k=1][\infty]A_k)=\Sum[k=1][\infty]P(A_k)
+        \end{Equation}
+    \end{enumerate}
+    那么我们就将$P(A)$称为$A$的\uwave{概率}（Probability）。
+\end{BoxDefinition}
+
+\xref{def:概率}是概率的公理化定义，称为\uwave{柯尔莫果洛夫公理}（Kolmogorov Axioms）\cite{W1,W2}，它非常正确，但确实没有给出更多概率的内涵，我们看不出这和可能性有任何关系。例如对于掷硬币这个事件，直观上应有$P(H)=0.5, P(T)=0.5$，但即便指定$P(H)=0.3, P(T)=0.7$，这也是完全符合概率的公理化定义的，那，岂不是乱套了！这里我们应当指出，\empx{概率和概率律是两件事情}，概率的公理化定义只保证概率的取值满足一些最基本的要求，比如硬币抛到正面的概率不能是$3.14$或$-273.15$，而至于说，概率具体是如何分布的，这其实是概率律的问题。\goodbreak
+
+概率律的确立有很多方法，我们上述认为硬币抛出正反面的概率“显然”各为一半，其实就是在通过经验和统计数据建立概率论，而之后，我们还会学习如何通过严格的概率模型去建立概率律\cite{B2}。而结合严格的概率模型之后，我们就可以明确的证明概率是频率在试验次数趋于无穷大的极限（即所谓大数定律），从而确立概率表示可能性的内涵，暂且，先接受这一点。
+
+概率的公理化定理的要求是最低的，例如，它事实上甚至都没有要求概率不能超过$1$，这是因为作为公理，要求总是应该越简单越好，这些很显然的性质其实可以通过三条公理演绎而来。
+
+\begin{BoxProperty}[不可能事件的概率]
+    不可能事件的概率为零
+    \begin{Equation}
+        P(\empty)=0
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    令$A_k=\empty, k=1,2,\cdots$，则显然
+    \begin{Equation}
+        \BigCup[k=1][\infty]A_k=\empty
+    \end{Equation}
+    且对于$\forall i,j\in\N^{*}$，若$i\neq j$，有$A_iA_j=\empty$，因此事件$A_k$之间两两相互独立。
+
+    这样一来，根据\fancyref{def:概率}中概率的可列可加性
+    \begin{Equation}
+        P(\empty)=P\qty(\BigCup[k=1][\infty]A_k)=\Sum[k=1][\infty]P(A_k)=\Sum[k=1][\infty]P(\empty)
+    \end{Equation}
+    这就表明$P(\empty)$是无穷多个自身的和，根据\fancyref{def:概率}中概率的非负性，这里又应当有$P(\empty)\geq 0$，为了使上式成立，就必有$P(\empty)=0$，这就证明了不可能事件概率为零。
+\end{Proof}
+
+概率的有限可加性的实质，是将概率公理中的可列可加性，限制到有限个的结果。
+
+\begin{BoxProperty}[概率的有限可加性]
+    概率的有限可加性是指，若$A_1,A_2,\cdots,A_n$是两两互不相容的事件，则
+    \begin{Equation}
+        P\qty(\BigCup[k=1][n]A_k)=\Sum[k=1][n]P(A_k)
+    \end{Equation}
+\end{BoxProperty}
+
+
+
+\begin{Proof}
+    在$A_1,A_2,\cdots,A_n$的基础上，令$A_{n+1}=A_{n+2}=\cdots=\empty$，显然，
+    \begin{Equation}
+        \BigCup[k=1][\infty]A_k=
+        \BigCup[k=1][n]A_k
+    \end{Equation}
+    现在$A_k$仍然满足两两互不相容，因此，可以利用\fancyref{def:概率}中概率的可列可加性
+    \begin{Equation}
+        P\qty(\BigCup[k=1][n]A_k)=
+        P\qty(\BigCup[k=1][\infty]A_k)=
+        \Sum[k=1][\infty]P(A_k)=\Sum[k=1][n]P(A_k)
+    \end{Equation}
+    这里最后一步应用了\fancyref{ppt:不可能事件的概率}的$P(\empty)=0$的结论。
+\end{Proof}
+
+\begin{BoxProperty}[包含事件的概率]
+    设$A,B$是两个事件，若$A\subset B$，则有
+    \begin{Equation}
+        P(B-A)=P(B)-P(A)
+    \end{Equation}
+    并且
+    \begin{Equation}
+        P(B)>P(A)
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    运用文氏图很容易想象，如果$A\subset B$，那么
+    \begin{Equation}
+        B=A\cup (B-A)
+    \end{Equation}
+    并且$A$与$(B-A)$还是互斥的
+    \begin{Equation}
+        A(B-A)=\empty
+    \end{Equation}
+    这样就可以应用\fancyref{ppt:概率的有限可加性}
+    \begin{Equation}
+        P(B)=P(A)+P(B-A)
+    \end{Equation}
+    移项即得
+    \begin{Equation}
+        P(B-A)=P(B)-P(A)
+    \end{Equation}
+    根据\fancyref{def:概率}中概率的非负性，此处$P(B-A)>0$，故$P(B)>P(A)$。
+\end{Proof}
+
+\begin{BoxProperty}[概率的上限]
+    对于任一事件$A$，总有
+    \begin{Equation}
+        P(A)\leq 1
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    由于$A\subset S$，根据\fancyref{ppt:包含事件的概率}和\fancyref{def:概率}的规范性
+    \begin{Equation}*
+        P(A)\leq P(S)=1\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxProperty}[概率的加法公式]
+    对于任意两事件$A,B$，总有
+    \begin{Equation}
+        P(A\cup B)=P(A)+P(B)-P(AB)
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    运用文氏图很容易想象，总有
+    \begin{Equation}
+        A\cup B=A\cup(B-AB)
+    \end{Equation}
+    并且$A$与$(B-A)$还是互斥的
+    \begin{Equation}
+        A(B-AB)=\empty
+    \end{Equation}
+    这样就可以应用\fancyref{ppt:概率的有限可加性}
+    \begin{Equation}
+        P(A\cup B)=P(A)+P(B-AB)
+    \end{Equation}
+    这里再应用\fancyref{ppt:包含事件的概率}，考虑到$AB\subset B$
+    \begin{Equation}*
+        P(A\cup B)=P(A)+P(B)-P(AB)\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxProperty}[逆事件的概率]
+    对于任一事件$A$，总有
+    \begin{Equation}
+        P(\bar{A})=1-P(A)
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{def:对立事件}，事件$A$和逆事件$\bar{A}$间满足
+    \begin{Equation}
+        A\cup\bar{A}=S\qquad
+        A\bar{A}=\empty
+    \end{Equation}
+    即$A,\bar{A}$互不相容，故可运用\fancyref{def:可列可加性}
+    \begin{Equation}
+        P(S)=P(A\cup\bar{A})=P(A)+P(\bar{A})
+    \end{Equation}
+    而另外一方面，根据\fancyref{def:概率}中概率的规范性
+    \begin{Equation}
+        P(S)=1
+    \end{Equation}
+    因此
+    \begin{Equation}*
+        P(A)+P(\bar{A})=P(S)\qedhere
+    \end{Equation}
+\end{Proof}
