@@ -1,0 +1,45 @@
+\section{古典概型}
+古典概型是概率论发展初期的主要研究对象，它的一些概念直观简单，具有广泛应用。
+
+\subsection{古典概型的定义}
+\begin{BoxDefinition}[古典概型]
+    若随机试验$E$满足以下两个特征
+    \begin{enumerate}
+        \item 试验的样本空间仅包含有限个元素。
+        \item 试验中的每个基本事件发生的可能性相同。
+    \end{enumerate}
+    则将随机试验$E$称为\uwave{古典概型}（Classical Probability）或\uwave{等可能概型}。
+\end{BoxDefinition}
+
+\subsection{古典概型的概率公式}
+\begin{BoxFormula}[古典概型的概率公式]
+    若事件$A$包含$k$个基本事件，而样本空间的大小为$n$，则
+    \begin{Equation}
+        P(A)=\frac{k}{n}
+    \end{Equation}
+\end{BoxFormula}
+\begin{Proof}
+    设试验的样本空间为$S=\qty{e_1,e_2,\cdots,e_n}$，根据\fancyref{def:古典概型}
+    \begin{Equation}&[1]
+        P(\qty{e_1})=
+        P(\qty{e_2})=
+        \cdots
+        P(\qty{e_n})
+    \end{Equation}
+    由于基本事件是两两互不相容的，且$S=\qty{e_1}\cup\qty{e_2}\cup\cdots\cup\qty{e_n}$
+    \begin{Equation}&[2]
+        1=P(S)=P\qty(\BigCup[i=1][n]\qty{e_i})=\Sum[i=1][n]P(\qty{e_i})
+    \end{Equation}
+    将\xrefpeq{1}代入\xrefpeq{2}，这里$i$可以是任意小于等于$n$的正整数
+    \begin{Equation}&[3]
+        1=nP(\qty{e_i})
+    \end{Equation}
+    故
+    \begin{Equation}
+        P(\qty{e_i})=\frac{1}{n}
+    \end{Equation}
+    而事件$A$中包含$k$个基本试验，即$A=\qty{e_{a1},e_{a2},\cdots,e_{ak}}$
+    \begin{Equation}*
+        P(A)=\Sum[i=1][k]P(\qty{e_{ai}})=\Sum[i=1][k]\frac{1}{n}=\frac{k}{n}\qedhere
+    \end{Equation}
+\end{Proof}
