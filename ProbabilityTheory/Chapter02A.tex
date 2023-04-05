@@ -1,0 +1,32 @@
+\section{随机变量}
+让我们回到那个抛硬币的试验，假设抛三次，则样本空间为
+\begin{Equation}*
+    S=\qty{HHH, HHT, HTH, THH, HTT, THT, TTH, TTT}
+\end{Equation}
+以$X$记三次投掷得到正面$H$的总数，那么，对于样本空间$S=\qty{e}$中的每一个样本点$e$，它都可以对应$X$的一个数值，这样一来$X$就是一个定义在样本空间$S$上的实值单值函数
+\begin{Equation}
+    X=X(e)=\begin{cases}
+        3,&e=HHH\\
+        2,&e=HHT, HTH, THH\\
+        1,&e=HTT\hspace{0.1em}, THT\hspace{0.1em}, TTH\\
+        0,&e=TTT
+    \end{cases}
+\end{Equation}
+函数$X$的定义域是样本空间$\qty{e}$，函数$X$的值域是$\qty{1,2,3,4}$。
+
+\begin{BoxDefinition}[随机变量]
+    设随机试验的样本空间为$S=\qty{e}$，而
+    \begin{Equation}
+        X=X(e)
+    \end{Equation}
+    是定义在$S$上的实值单值函数，则称$X=X(e)$为\uwave{随机变量}（Random Variable）。
+\end{BoxDefinition}
+
+简而言之，所谓随机变量，就是指将随机试验的每个样本点对应一个实数所构成的函数，当我们引入随机变量后，我们关于概率论的研究，就可以着眼于函数值，也就是随机变量的分布规律了，至于说，当随机变量取$1,2,3,\cdots$时到底表示什么，是掷骰子投出的点数？是抛硬币正面朝上的次数？是取出白球的数量？这就不是很重要了，这些具体的表象都被转化为了数字。\goodbreak
+
+关于“随机变量是函数”这一点，我们要认清两点
+\begin{enumerate}
+    \item 随机试验的结果和随机变量之间是有确定的函数关系的
+    \item 随机变量本身的结果是不确定的
+\end{enumerate}
+而我们的研究，主要是着眼于随机变量本身的不确定性结果，其实并不关心前者的函数关系。
