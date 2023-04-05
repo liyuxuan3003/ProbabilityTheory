@@ -1,0 +1,416 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     17392,        408]
+NotebookOptionsPosition[     16220,        384]
+NotebookOutlinePosition[     16669,        402]
+CellTagsIndexPosition[     16626,        399]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"BFunc", "[", 
+   RowBox[{"k_", ",", "p_", ",", "n_"}], "]"}], ":=", 
+  RowBox[{
+   RowBox[{"Binomial", "[", 
+    RowBox[{"n", ",", "k"}], "]"}], 
+   SuperscriptBox["p", "k"], 
+   SuperscriptBox[
+    RowBox[{"(", 
+     RowBox[{"1", "-", "p"}], ")"}], 
+    RowBox[{"n", "-", "k"}]]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"PFunc", "[", 
+   RowBox[{"k_", ",", "\[Lambda]_"}], "]"}], ":=", 
+  FractionBox[
+   RowBox[{
+    SuperscriptBox["\[Lambda]", "k"], 
+    RowBox[{"Exp", "[", 
+     RowBox[{"-", "\[Lambda]"}], "]"}]}], 
+   RowBox[{"k", "!"}]]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"ExpFunc", "[", 
+   RowBox[{"x_", ",", "\[Theta]_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", "\[Theta]"], 
+   RowBox[{"Exp", "[", 
+    RowBox[{"-", 
+     FractionBox["x", "\[Theta]"]}], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"GauFunc", "[", 
+   RowBox[{"x_", ",", "\[Mu]_", ",", "\[Sigma]_"}], "]"}], ":=", 
+  RowBox[{
+   FractionBox["1", 
+    RowBox[{
+     RowBox[{"Sqrt", "[", 
+      RowBox[{"2", "Pi"}], "]"}], "\[Sigma]"}]], 
+   RowBox[{"Exp", "[", 
+    RowBox[{"-", 
+     FractionBox[
+      SuperscriptBox[
+       RowBox[{"(", 
+        RowBox[{"x", "-", "\[Mu]"}], ")"}], "2"], 
+      RowBox[{"2", 
+       SuperscriptBox["\[Sigma]", "2"]}]]}], "]"}]}]}], "\[IndentingNewLine]", 
+ RowBox[{"SetDirectory", "[", 
+  RowBox[{"NotebookDirectory", "[", "]"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.88956588782755*^9, 3.889566002946508*^9}, {
+   3.889566878340307*^9, 3.889566925857136*^9}, {3.889566976095435*^9, 
+   3.8895670019506016`*^9}, {3.889567037170427*^9, 3.8895670385163116`*^9}, {
+   3.8895675671666617`*^9, 3.889567651305183*^9}, 3.8895677347767763`*^9, {
+   3.8895679022110124`*^9, 3.8895679113172703`*^9}},
+ CellLabel->"In[71]:=",ExpressionUUID->"a4301b51-6428-4993-8d19-0f7ab16de0c6"],
+
+Cell[BoxData[{
+ RowBox[{"DiscretePlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"BFunc", "[", 
+      RowBox[{"k", ",", "0.1", ",", "50"}], "]"}], ",", 
+     RowBox[{"BFunc", "[", 
+      RowBox[{"k", ",", "0.3", ",", "50"}], "]"}], ",", 
+     RowBox[{"BFunc", "[", 
+      RowBox[{"k", ",", "0.5", ",", "50"}], "]"}], ",", 
+     RowBox[{"BFunc", "[", 
+      RowBox[{"k", ",", "0.7", ",", "50"}], "]"}], ",", 
+     RowBox[{"BFunc", "[", 
+      RowBox[{"k", ",", "0.9", ",", "50"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"k", ",", "0", ",", "50"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0.2"}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{
+StyleBox[\"k\", \"TI\"], \"\[LongEqual]\", \"0.1\"}], TraditionalForm], \
+\"errors\" -> {}, \"input\" -> \"k=0.1\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{
+StyleBox[\"k\", \"TI\"], \"\[LongEqual]\", \"0.3\"}], TraditionalForm], \
+\"errors\" -> {}, \"input\" -> \"k=0.3\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{
+StyleBox[\"k\", \"TI\"], \"\[LongEqual]\", \"0.5\"}], TraditionalForm], \
+\"errors\" -> {}, \"input\" -> \"k=0.5\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{
+StyleBox[\"k\", \"TI\"], \"\[LongEqual]\", \"0.7\"}], TraditionalForm], \
+\"errors\" -> {}, \"input\" -> \"k=0.7\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{
+StyleBox[\"k\", \"TI\"], \"\[LongEqual]\", \"0.9\"}], TraditionalForm], \
+\"errors\" -> {}, \"input\" -> \"k=0.9\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\""}], "}"}]}]}], 
+  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<output/BFunc.pdf\>\"", ",", "%"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.889566133502614*^9, 3.889566227715234*^9}, {
+  3.889566326426861*^9, 3.889566443217747*^9}, {3.8895667530177402`*^9, 
+  3.8895667740965223`*^9}, {3.8895679197835927`*^9, 3.8895679532166214`*^9}},
+ CellLabel->"In[76]:=",ExpressionUUID->"b75584a4-5464-47c5-a89f-50572e88d044"],
+
+Cell[BoxData[{
+ RowBox[{"DiscretePlot", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"PFunc", "[", 
+      RowBox[{"k", ",", "5"}], "]"}], ",", 
+     RowBox[{"PFunc", "[", 
+      RowBox[{"k", ",", "10"}], "]"}], ",", 
+     RowBox[{"PFunc", "[", 
+      RowBox[{"k", ",", "20"}], "]"}], ",", 
+     RowBox[{"PFunc", "[", 
+      RowBox[{"k", ",", "30"}], "]"}], ",", 
+     RowBox[{"PFunc", "[", 
+      RowBox[{"k", ",", "40"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"k", ",", "0", ",", "50"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "0.2"}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Lambda]\", \"\[LongEqual]\", \"5\"}], TraditionalForm], \
+\"errors\" -> {}, \"input\" -> \"\\\\lambda=5\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Lambda]\", \"\[LongEqual]\", \"10\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\lambda=10\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Lambda]\", \"\[LongEqual]\", \"20\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\lambda=20\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Lambda]\", \"\[LongEqual]\", \"30\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\lambda=30\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Lambda]\", \"\[LongEqual]\", \"40\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\lambda=40\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\""}], "}"}]}]}], 
+  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<output/PFunc.pdf\>\"", ",", "%"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8895662516927133`*^9, 3.8895662907760067`*^9}, {
+  3.8895664477638307`*^9, 3.889566458628951*^9}, {3.889566642381157*^9, 
+  3.889566643151765*^9}, {3.889566852632982*^9, 3.8895668700811033`*^9}, {
+  3.889567981371765*^9, 3.889567985575754*^9}},
+ CellLabel->"In[78]:=",ExpressionUUID->"5ff69d2a-4e83-4921-a360-1393ca1ce127"],
+
+Cell[BoxData[{
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"ExpFunc", "[", 
+      RowBox[{"x", ",", "1"}], "]"}], ",", 
+     RowBox[{"ExpFunc", "[", 
+      RowBox[{"x", ",", "2"}], "]"}], ",", 
+     RowBox[{"ExpFunc", "[", 
+      RowBox[{"x", ",", "4"}], "]"}], ",", 
+     RowBox[{"ExpFunc", "[", 
+      RowBox[{"x", ",", "8"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "10"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "1"}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Theta]\", \"\[LongEqual]\", \"1.0\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\theta=1.0\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Theta]\", \"\[LongEqual]\", \"2\"}], TraditionalForm], \"errors\" \
+-> {}, \"input\" -> \"\\\\theta=2\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\).0\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Theta]\", \"\[LongEqual]\", \"4.0\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\theta=4.0\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Theta]\", \"\[LongEqual]\", \"8.0\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\theta=8.0\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\""}], "}"}]}]}], 
+  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<output/ExpFunc.pdf\>\"", ",", "%"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.88956736655617*^9, 3.889567501986328*^9}, {
+  3.889567863091494*^9, 3.889567863301841*^9}, {3.889567991220561*^9, 
+  3.8895679937026815`*^9}},
+ CellLabel->"In[80]:=",ExpressionUUID->"cd5829fc-8a2b-4acf-8749-e411a62db140"],
+
+Cell[BoxData[{
+ RowBox[{"Plot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"GauFunc", "[", 
+      RowBox[{"x", ",", "5", ",", "0.5"}], "]"}], ",", 
+     RowBox[{"GauFunc", "[", 
+      RowBox[{"x", ",", "5", ",", "1"}], "]"}], ",", 
+     RowBox[{"GauFunc", "[", 
+      RowBox[{"x", ",", "5", ",", "2"}], "]"}], ",", 
+     RowBox[{"GauFunc", "[", 
+      RowBox[{"x", ",", "5", ",", "4"}], "]"}]}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"x", ",", "0", ",", "10"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotRange", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"0", ",", "1"}], "}"}]}], ",", "\[IndentingNewLine]", 
+   RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Sigma]\", \"\[LongEqual]\", \"0.5\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\sigma=0.5\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Sigma]\", \"\[LongEqual]\", \"1.0\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\sigma=1.0\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Sigma]\", \"\[LongEqual]\", \"2.0\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\sigma=2.0\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\"", ",", 
+      "\"\<\!\(\*TemplateBox[<|\"boxes\" -> FormBox[
+RowBox[{\"\[Sigma]\", \"\[LongEqual]\", \"4.0\"}], TraditionalForm], \"errors\
+\" -> {}, \"input\" -> \"\\\\sigma=4.0\", \"state\" -> \
+\"Boxes\"|>,\"TeXAssistantTemplate\"]\)\>\""}], "}"}]}]}], 
+  "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<output/GauFunc.pdf\>\"", ",", "%"}], "]"}]}], "Input",
+ CellChangeTimes->{{3.8895677803447866`*^9, 3.88956783908673*^9}, {
+  3.8895679969243093`*^9, 3.889567999375705*^9}},
+ CellLabel->"In[88]:=",ExpressionUUID->"a54fe041-b531-4046-83c9-fe12bdb33356"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"DiscretePlot", "[", 
+    RowBox[{
+     RowBox[{"BFunc", "[", 
+      RowBox[{"k", ",", "p", ",", "n"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "0", ",", "50"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0.2"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"n", ",", "50"}], "}"}], ",", "0", ",", "50", ",", "1"}], "}"}],
+    ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"p", ",", "0.5"}], "}"}], ",", "0", ",", "1"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8895660124627333`*^9, 3.8895660452836337`*^9}},
+ CellLabel->"In[84]:=",ExpressionUUID->"dbd0c6e8-da58-4a9f-834f-b300f72b0487"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"DiscretePlot", "[", 
+    RowBox[{
+     RowBox[{"PFunc", "[", 
+      RowBox[{"k", ",", "\[Lambda]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"k", ",", "0", ",", "50"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "0.2"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}]}], "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Lambda]", ",", "5"}], "}"}], ",", "0", ",", "50"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.889566032315313*^9, 3.889566087677183*^9}},
+ CellLabel->"In[85]:=",ExpressionUUID->"a9354e29-7368-41c4-9a5c-2b1904907e7e"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"ExpFunc", "[", 
+      RowBox[{"x", ",", "\[Theta]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "10"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}]}], 
+    "\[IndentingNewLine]", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Theta]", ",", "1"}], "}"}], ",", "0", ",", "5"}], "}"}]}], 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8895670130771103`*^9, 3.8895670581458545`*^9}, {
+  3.8895671532269535`*^9, 3.889567268088564*^9}},
+ CellLabel->"In[86]:=",ExpressionUUID->"8bf4b05e-f041-4d40-8087-f0202efe2955"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", 
+  RowBox[{
+   RowBox[{"Plot", "[", 
+    RowBox[{
+     RowBox[{"GauFunc", "[", 
+      RowBox[{"x", ",", "\[Mu]", ",", "\[Sigma]"}], "]"}], ",", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", "0", ",", "10"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Frame", "\[Rule]", "True"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"GridLines", "\[Rule]", "Automatic"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}]}], 
+    "\[IndentingNewLine]", "]"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Mu]", ",", "5"}], "}"}], ",", "0", ",", "10"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Sigma]", ",", "1"}], "}"}], ",", "0.25", ",", "2"}], "}"}]}],
+   "]"}]], "Input",
+ CellChangeTimes->{{3.889567674848826*^9, 3.889567721521105*^9}, {
+  3.889567763674755*^9, 3.88956776935651*^9}},
+ CellLabel->"In[87]:=",ExpressionUUID->"b9e6a8c3-8dbd-4435-9125-ae5d235844dc"]
+},
+WindowSize->{960., 478.75},
+WindowMargins->{{-4.5, Automatic}, {Automatic, -4.5}},
+Magnification:>1.1 Inherited,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (2022\:5e742\:67084\
+\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"e1f4df51-18d3-4805-97fc-71b880bbf7bf"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 1857, 52, 194, "Input",ExpressionUUID->"a4301b51-6428-4993-8d19-0f7ab16de0c6"],
+Cell[2418, 74, 2651, 55, 188, "Input",ExpressionUUID->"b75584a4-5464-47c5-a89f-50572e88d044"],
+Cell[5072, 131, 2617, 51, 188, "Input",ExpressionUUID->"5ff69d2a-4e83-4921-a360-1393ca1ce127"],
+Cell[7692, 184, 2175, 44, 167, "Input",ExpressionUUID->"cd5829fc-8a2b-4acf-8749-e411a62db140"],
+Cell[9870, 230, 2172, 43, 167, "Input",ExpressionUUID->"a54fe041-b531-4046-83c9-fe12bdb33356"],
+Cell[12045, 275, 1073, 27, 115, "Input",ExpressionUUID->"dbd0c6e8-da58-4a9f-834f-b300f72b0487"],
+Cell[13121, 304, 936, 22, 115, "Input",ExpressionUUID->"a9354e29-7368-41c4-9a5c-2b1904907e7e"],
+Cell[14060, 328, 1008, 24, 136, "Input",ExpressionUUID->"8bf4b05e-f041-4d40-8087-f0202efe2955"],
+Cell[15071, 354, 1145, 28, 136, "Input",ExpressionUUID->"b9e6a8c3-8dbd-4435-9125-ae5d235844dc"]
+}
+]
+*)
+
