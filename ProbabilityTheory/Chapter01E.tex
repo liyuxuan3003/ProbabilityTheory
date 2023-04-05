@@ -1,0 +1,207 @@
+\section{条件概率}
+我们说，假如有100人进行抽签，比如说有2个签或之类的，虽然我们知道，先抽和后抽中签的概率并没有差异，均是$1/100$，但是在等待抽签的过程中，总有这样朴素的想法
+\begin{itemize}
+    \item 如果上来就有人抽到了签，那么之后我再中签的概率就小很多
+    \item 如果上来很多人都没有抽到前，那么之后我再中签的概率就大很多
+\end{itemize}
+这种朴素的想法，在概率论中称为\uwave{条件概率}。
+
+\subsection{条件概率的定义}
+\begin{BoxDefinition}[条件概率]
+    设$A,B$是两个事件，且$P(A)>0$，那么将
+    \begin{Equation}
+        P(B\mid A)=\frac{P(AB)}{P(A)}
+    \end{Equation}
+    称为在事件$A$发生的条件下，事件$B$发生的\uwave{条件概率}（Conditional Probability）。
+\end{BoxDefinition}
+
+事件$B$在事件$A$发生的前提下发生的条件概率为
+\begin{Equation}
+    P(B\mid A)=\frac{P(AB)}{P(A)}
+\end{Equation}
+事件$B$发生的概率，其实可以认为是在必然事件$S$发生的前提下发生的条件概率
+\begin{Equation}
+    P(B)=P(B\mid S)=\frac{P(SB)}{P(S)}
+\end{Equation}
+条件概率在文氏图中的表示常常是一个挺让人困惑的问题，因为$P(AB)$和$P(B\mid A)$分别代表“$A,B$同时发生的概率”和“$A$发生后$B$发生的概率”，在文氏图上好像都应用$A,B$的交集来表示，但很明显两者又不相等，这怎么解释呢？其实关键在于，样本空间的划定范围，同样是$A,B$的交集，计算$P(AB)$时的样本空间是$S$，计算$P(B\mid A)$时的样本空间则是$A$。
+
+条件概率$P(\cdot\mid A)$，容易验证，亦满足\fancyref{def:概率}的三条概率公理。
+
+\subsection{条件概率与乘法公式}
+概率乘法公式，即求两个事件同时发生的概率，其实是\fancyref{def:条件概率}的简单改写。
+\begin{BoxFormula}[概率的乘法公式]
+    设$A,B$是两个事件，两者同时发生的概率为
+    \begin{Equation}
+        P(AB)=P(B\mid A)P(A)
+    \end{Equation}
+\end{BoxFormula}
+概率乘法公式是容易理解的，$A,B$同时发生的概率，即$A$发生的概率乘以$A$发生时$B$发生的概率。这种想法也可以很容易的推广到$n$个事件的情形，若有$A_1,A_2,\cdots,A_n$共$n$个事件
+\begin{Equation}
+    \qquad\quad
+    P(A_1A_2\cdots A_n)=P(A_n\mid A_1A_2\cdots A_{n-1})\cdots P(A_3\mid A_2A_1)P(A_2\mid A_1)P(A_1)
+    \qquad\quad
+\end{Equation}
+
+\subsection{全概率公式和贝叶斯公式}
+在介绍全概率公式和贝叶斯公式前，我们先来介绍样本空间的划分的定义。
+
+\begin{BoxDefinition}[划分]
+    设$S$为试验$E$的样本空间，$B_1,B_2,\cdots,B_n$为$E$的一组事件，若
+    \begin{enumerate}
+        \item $B_iB_j=\empty, i,j=1,2,\cdots, n, i\neq j$，即$B_1,B_2,\cdots,B_n$两两互不相容
+        \item $B_1\cup B_2\cup\cdots\cup B_n=S$
+    \end{enumerate}
+    则称$B_1,B_2,\cdots,B_n$是样本空间的一个\uwave{划分}（Partition）。
+\end{BoxDefinition}
+
+简而言之，\empx{划分就是将一个集合拆成若干个完备但互不重叠的集合}。
+
+\begin{BoxTheorem}[全概率定理]
+    设$A$为$E$的事件，而$B_1,B_2,\cdots,B_n$为$S$的一个划分，且$P(B_i)>0$，则
+    \begin{Equation}
+        P(A)=\Sum[k=1][n]P(A\mid B_k)P(B_k)
+    \end{Equation}
+    该结论称为\uwave{全概率定理}（Law of Total Probability）。
+\end{BoxTheorem}
+
+\begin{Proof}
+    根据\fancyref{def:划分}
+    \begin{Equation}&[1]
+        A=AS=A(B_1\cup B_2\cup\cdots\cup B_n)
+    \end{Equation}
+    运用交集（即乘法）对并集的分配律
+    \begin{Equation}&[2]
+        A=AB_1\cup AB_2\cup\cdots\cup AB_n
+    \end{Equation}
+    根据\fancyref{def:划分}，我们知道$B_1,B_2,\cdots,B_n$两两互不相容，故$AB_1,AB_2,\cdots,AB_n$亦两两互不相容，因此，运用\xrefpeq{2}和\fancyref{ppt:概率的有限可加性}，概率$P(A)$可以表示为
+    \begin{Equation}&[3]
+        P(A)=
+        P\qty(\BigCup[k=1][n]AB_k)=\Sum[k=1][n]P(AB_k)
+    \end{Equation}
+    根据\fancyref{fml:概率的乘法公式}
+    \begin{Equation}*
+        P(A)=\Sum[k=1][n]P(A\mid B_k)P(B_k)\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxTheorem}[贝叶斯定理]
+    设$A$为$E$的事件，而$B_1,B_2,\cdots,B_n$为$S$的一个划分，且$P(A),P(B_i)>0$，则
+    \begin{Equation}
+        P(B_i\mid A)=\frac{P(A\mid B_i)P(B_i)}{P(A)}=\frac{P(A\mid B_i)P(B_i)}{\Sum[k=1][n]P(A\mid B_k)P(B_k)}
+    \end{Equation}
+    该结论称为\uwave{贝叶斯定理}（Bayes' Theorem）。
+\end{BoxTheorem}
+\begin{Proof}
+    根据\fancyref{def:条件概率}
+    \begin{Equation}
+        P(B_i\mid A)=\frac{P(AB_i)}{P(A)}
+    \end{Equation}
+    在上式中，就$P(A)$代入\fancyref{thm:全概率定理}，并使用\fancyref{fml:概率的乘法公式}
+    \begin{Equation}*
+        P(B_i\mid A)=\frac{P(A\mid B_i)P(B_i)}{\Sum[k=1][n]P(A\mid B_k)P(B_k)}\qedhere
+    \end{Equation}
+\end{Proof}
+
+现在让我们来看一个应用贝叶斯定理和全概率定理的例子。
+
+% \begin{BoxExample}[条件概率的计算实例1]*
+%     设有两个袋子，甲和乙，两个袋子均装有若干小球
+%     \begin{itemize}
+%         \item 在甲袋中，装有$1$个白球和$2$个黑球。
+%         \item 在乙袋中，装有$2$个白球和$1$个黑球。
+%     \end{itemize}
+%     设两个事件$A,B$
+%     \begin{itemize}
+%         \item 以$A$表示“从甲袋中取出一个白球”。
+%         \item 以$B$表示“从乙袋中取出一个白球”。
+%     \end{itemize}
+%     现在试问，由乙袋中任取一个小球放入甲袋，再从甲袋中取出一个球，是白球的概率。
+% \end{BoxExample}
+
+% \begin{Proof}
+%     根据\fancyref{thm:全概率定理}
+%     \begin{Equation}
+%         P(A)=P(A\mid B)P(B)+P(A\mid\bar{B})P(\bar{B})
+%     \end{Equation}
+%     换言之，从乙袋取出一个白球的概率，可以分为两部分计算
+%     \begin{itemize}
+%         \item $P(B)P(A\mid B)$即乙袋取出白球放入甲袋，从甲袋取出白球的概率。
+%         \item $P(\bar{B})P(A\mid\bar{B})$即乙袋取出黑球放入甲袋，从甲袋取出白球的概率。
+%     \end{itemize}
+%     很明显
+%     \begin{Equation}
+%         P(B)=\frac{2}{3}\qquad
+%         P(\bar{B})=\frac{1}{3}
+%     \end{Equation}
+%     如果乙袋放入甲袋的是白球，那么甲袋中，有$2$个白球和$2$个黑球
+%     \begin{Equation}
+%         P(A\mid B)=\frac{2}{4}
+%     \end{Equation}
+%     如果乙袋放入甲袋的是黑球，那么甲袋中，有$1$个白球和$3$个黑球
+%     \begin{Equation}
+%         P(A\mid\bar{B})=\frac{1}{4}
+%     \end{Equation}
+%     因此
+%     \begin{Equation}*
+%         P(A)=\frac{2}{4}\cdot\frac{2}{3}+\frac{1}{4}\cdot\frac{1}{3}=\frac{5}{12}\qedhere
+%     \end{Equation}
+% \end{Proof}
+
+\begin{BoxExample}[条件概率的计算实例]*
+    设有一种癌症，根据历史统计数据，在人群中患有该癌症的概率为$0.005$。
+
+    设现在有一种癌症筛查手段，记
+    \begin{itemize}
+        \item 以$A$表示事件“被试者的反应为阳性”。
+        \item 以$B$表示事件“被试者患有癌症”。
+    \end{itemize}
+    现在已知这种癌症筛查手段满足
+    \begin{itemize}
+        \item 若有癌症，阳性概率$P(A\mid B)=0.95$，即，真阳性率为$0.95$，假阴性率为$0.05$。
+        \item 若无癌症，阴性概率$P(\bar{A}\mid \bar{B})=0.95$，即，真阴性率为$0.95$，假阳性率为$0.05$。
+    \end{itemize}
+    现讨论该癌症筛查手段的有效性，即检测为阳性，且患癌症的概率$P(B\mid A)$。
+\end{BoxExample}
+
+\begin{Solution}
+    首先，人群中患有该癌症的概率是$0.005$，即
+    \begin{Equation}&[1]
+        P(B)=0.005
+    \end{Equation}
+    即
+    \begin{Equation}&[1.5]
+        P(\bar{B})=0.995
+    \end{Equation}
+    根据真阳性率为$0.95$的条件
+    \begin{Equation}&[2]
+        P(A\mid B)=0.95
+    \end{Equation}
+    根据假阳性率为$0.05$的条件
+    \begin{Equation}&[3]
+        P(A\mid\bar{B})=1-P(\bar{A}\mid\bar{B})=0.05
+    \end{Equation}
+    应用\fancyref{thm:全概率定理}
+    \begin{Equation}&[4]
+        P(A)=P(A\mid B)P(B)+P(A\mid\bar{B})P(\bar{B})
+    \end{Equation}
+    代入\xrefpeq{1},\xrefpeq{1.5},\xrefpeq{2},\xrefpeq{3}
+    \begin{Equation}&[5]
+        P(A)=0.95\cdot 0.005+0.05\cdot 0.995=0.0545
+    \end{Equation}
+    这表明，人群中进行筛查的阳性率（无论是真阳还是假阳）为$0.0545$。
+
+    应用\fancyref{thm:贝叶斯定理}
+    \begin{Equation}
+        P(B\mid A)=\frac{P(BA)}{P(A)}
+    \end{Equation}
+    应用\fancyref{fml:概率的乘法公式}
+    \begin{Equation}
+        P(B\mid A)=\frac{P(A\mid B)P(B)}{P(A)}
+    \end{Equation}
+    即得
+    \begin{Equation}*
+        P(B\mid A)=\frac{0.95*0.005}{0.0545}=0.0872\qedhere
+    \end{Equation}
+\end{Solution}
+
+这表明，尽管这种癌症筛查手段的假阳性率和假阴性率都只有$0.05$，但是如果发现检测为阳性，真正患癌症的概率只有$0.0872$，是很低的，这是为什么呢？实际上，关键在于，作为一个大规模筛查罕见病的手段，假阳性率应当要很低，因为健康人口的基数很大，这就导致会尽管假阳性率并不高，但出现的假阳性案例甚至会比真阳性还多的多，造成筛查的有效性被破坏。
