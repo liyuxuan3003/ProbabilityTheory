@@ -1,0 +1,272 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 13.0' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[      9306,        264]
+NotebookOptionsPosition[      8800,        247]
+NotebookOutlinePosition[      9255,        265]
+CellTagsIndexPosition[      9212,        262]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"Plot3D", "[", 
+    RowBox[{
+     RowBox[{
+      FractionBox["1", 
+       RowBox[{"2", " ", "Pi", " ", 
+        SubscriptBox["\[Sigma]", "1"], 
+        SubscriptBox["\[Sigma]", "2"], 
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"1", "-", 
+          SuperscriptBox["\[Rho]", "2"]}], "]"}]}]], 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"-", "1"}], 
+         RowBox[{"2", 
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            SuperscriptBox["\[Rho]", "2"]}], ")"}]}]], 
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", 
+              SubscriptBox["\[Mu]", "1"]}], ")"}], "2"], 
+           SuperscriptBox[
+            SubscriptBox["\[Sigma]", "1"], "2"]], "-", 
+          RowBox[{"2", "\[Rho]", " ", 
+           FractionBox[
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"x", "-", 
+               SubscriptBox["\[Mu]", "1"]}], ")"}], 
+             RowBox[{"(", 
+              RowBox[{"y", "-", 
+               SubscriptBox["\[Mu]", "2"]}], ")"}]}], 
+            RowBox[{
+             SubscriptBox["\[Sigma]", "1"], 
+             SubscriptBox["\[Sigma]", "2"]}]]}], "+", 
+          FractionBox[
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"y", "-", 
+              SubscriptBox["\[Mu]", "2"]}], ")"}], "2"], 
+           SuperscriptBox[
+            SubscriptBox["\[Sigma]", "2"], "2"]]}], ")"}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotPoints", "\[Rule]", "100"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"ColorFunction", "\[Rule]", 
+      RowBox[{"ColorData", "[", "\"\<DarkRainbow\>\"", "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ColorFunctionScaling", "\[Rule]", "None"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotLegends", "\[Rule]", 
+      RowBox[{"BarLegend", "[", 
+       RowBox[{"{", 
+        RowBox[{"Automatic", ",", 
+         RowBox[{"{", 
+          RowBox[{"0.0", ",", "1.0"}], "}"}]}], "}"}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ViewPoint", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"80", ",", 
+        RowBox[{"-", "100"}], ",", "60"}], "}"}]}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["\[Sigma]", "1"], ",", "0.4"}], "}"}], ",", "0.1", ",", 
+     "10"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["\[Sigma]", "2"], ",", "0.4"}], "}"}], ",", "0.1", ",", 
+     "10"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["\[Mu]", "1"], ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["\[Mu]", "2"], ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Rho]", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "0.95"}], ",", "0.95"}], "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.89096253786615*^9, 3.8909628618441725`*^9}, {
+  3.890962912293043*^9, 3.8909629650943823`*^9}, {3.890963022003615*^9, 
+  3.8909631603532853`*^9}, {3.8909632173674*^9, 3.890963254652218*^9}, {
+  3.89096329570705*^9, 3.8909635013859043`*^9}, {3.890963559670807*^9, 
+  3.8909635601605344`*^9}, {3.8909636244610105`*^9, 3.8909636377370205`*^9}},
+ CellLabel->"In[69]:=",ExpressionUUID->"6a37a941-a683-4848-b3bb-6e354d1af9f1"],
+
+Cell[BoxData[
+ RowBox[{"Manipulate", "[", "\[IndentingNewLine]", 
+  RowBox[{
+   RowBox[{"ContourPlot", "[", 
+    RowBox[{
+     RowBox[{
+      FractionBox["1", 
+       RowBox[{"2", " ", "Pi", " ", 
+        SubscriptBox["\[Sigma]", "1"], 
+        SubscriptBox["\[Sigma]", "2"], 
+        RowBox[{"Sqrt", "[", 
+         RowBox[{"1", "-", 
+          SuperscriptBox["\[Rho]", "2"]}], "]"}]}]], 
+      RowBox[{"Exp", "[", 
+       RowBox[{
+        FractionBox[
+         RowBox[{"-", "1"}], 
+         RowBox[{"2", 
+          RowBox[{"(", 
+           RowBox[{"1", "-", 
+            SuperscriptBox["\[Rho]", "2"]}], ")"}]}]], 
+        RowBox[{"(", 
+         RowBox[{
+          FractionBox[
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"x", "-", 
+              SubscriptBox["\[Mu]", "1"]}], ")"}], "2"], 
+           SuperscriptBox[
+            SubscriptBox["\[Sigma]", "1"], "2"]], "-", 
+          RowBox[{"2", "\[Rho]", " ", 
+           FractionBox[
+            RowBox[{
+             RowBox[{"(", 
+              RowBox[{"x", "-", 
+               SubscriptBox["\[Mu]", "1"]}], ")"}], 
+             RowBox[{"(", 
+              RowBox[{"y", "-", 
+               SubscriptBox["\[Mu]", "2"]}], ")"}]}], 
+            RowBox[{
+             SubscriptBox["\[Sigma]", "1"], 
+             SubscriptBox["\[Sigma]", "2"]}]]}], "+", 
+          FractionBox[
+           SuperscriptBox[
+            RowBox[{"(", 
+             RowBox[{"y", "-", 
+              SubscriptBox["\[Mu]", "2"]}], ")"}], "2"], 
+           SuperscriptBox[
+            SubscriptBox["\[Sigma]", "2"], "2"]]}], ")"}]}], "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"x", ",", 
+       RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"y", ",", 
+       RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotRange", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"0", ",", "1"}], "}"}]}], ",", "\[IndentingNewLine]", 
+     RowBox[{"PlotPoints", "\[Rule]", "100"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"Contours", "\[Rule]", "30"}], ",", "\[IndentingNewLine]", 
+     RowBox[{"ColorFunction", "\[Rule]", 
+      RowBox[{"ColorData", "[", "\"\<DarkRainbow\>\"", "]"}]}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"ColorFunctionScaling", "\[Rule]", "None"}], ",", 
+     "\[IndentingNewLine]", 
+     RowBox[{"PlotLegends", "\[Rule]", 
+      RowBox[{"BarLegend", "[", 
+       RowBox[{
+        RowBox[{"{", 
+         RowBox[{"Automatic", ",", 
+          RowBox[{"{", 
+           RowBox[{"0.0", ",", "1.0"}], "}"}]}], "}"}], ",", "19"}], "]"}]}], 
+     ",", "\[IndentingNewLine]", 
+     RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}]}], "]"}], ",", 
+   "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["\[Sigma]", "1"], ",", "0.5"}], "}"}], ",", "0.1", ",", 
+     "10"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["\[Sigma]", "2"], ",", "0.5"}], "}"}], ",", "0.1", ",", 
+     "10"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["\[Mu]", "1"], ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{
+       SubscriptBox["\[Mu]", "2"], ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "2"}], ",", "2"}], "}"}], ",", "\[IndentingNewLine]", 
+   RowBox[{"{", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"\[Rho]", ",", "0"}], "}"}], ",", 
+     RowBox[{"-", "0.95"}], ",", "0.95"}], "}"}]}], "\[IndentingNewLine]", 
+  "]"}]], "Input",
+ CellChangeTimes->{{3.8909638157205753`*^9, 3.890963947354562*^9}, {
+  3.8909640485891604`*^9, 3.890964048972288*^9}, {3.890964086403509*^9, 
+  3.8909640869538937`*^9}},
+ CellLabel->"In[68]:=",ExpressionUUID->"0ed0cd70-934b-4f13-8795-89ec78fa78fa"]
+},
+WindowSize->{951., 474.25},
+WindowMargins->{{0, Automatic}, {Automatic, 0}},
+TaggingRules-><|"TryRealOnly" -> False|>,
+FrontEndVersion->"13.0 for Microsoft Windows (64-bit) (2022\:5e742\:67084\
+\:65e5)",
+StyleDefinitions->"Default.nb",
+ExpressionUUID->"40f760cd-60c7-4594-848d-0fba97922c96"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 4245, 114, 388, "Input",ExpressionUUID->"6a37a941-a683-4848-b3bb-6e354d1af9f1"],
+Cell[4806, 136, 3990, 109, 388, "Input",ExpressionUUID->"0ed0cd70-934b-4f13-8795-89ec78fa78fa"]
+}
+]
+*)
+
