@@ -1,0 +1,96 @@
+\section{随机变量的函数分布}
+在实际中，我们往往会对某些随机变量的函数更感兴趣，例如，在一些试验中，我们所关心的随机变量往往不能直接测量得到，它是另外一个能测量的随机变量的函数。例如，测量的是圆柱的直径$d$，关心的是却是圆柱的底面积$\pi d^2/4$。在这一节中，我们将会讨论如何由已知的随机变量$X$的概率分布去求它的函数$Y=g(X)$的概率分布（这里$g(x)$是已知的连续函数）。
+
+\begin{BoxTheorem}[随机变量的函数分布]
+    设随机变量$X$具有概率密度$f_X(x)$，又设函数$g(x)$处处可导，且其导数$g'(x)$恒正或恒负，那么$Y=g(X)$仍是连续型随机变量，且其概率密度$f_Y(y)$为
+    \begin{Equation}
+        f_Y(y)=
+        \begin{cases}
+            f_X[g^{-1}(y)]\cdot\abs{g^{-1}(y)'},&\alpha<y<\beta\\
+            0,&\text{otherwise}
+        \end{cases}
+    \end{Equation}
+    其中，$\alpha=\min\qty{g(-\infty),g(\infty)}$，$\beta=\max\qty{g(-\infty),g(\infty)}$，$g^{-1}$是$g$的反函数。
+\end{BoxTheorem}\goodbreak
+
+\begin{Proof}\nopagebreak
+    我们以$g'(x)>0$的情况为例证明，而$g'(x)<0$的情况是可以完全类似证明的。
+
+    由于$g(x)$在$(-\infty,\infty)$内严格单调增加，故存在反函数$g^{-1}(y)$，且反函数在$(\alpha,\beta)$内严格单调增加。设$X,Y$的分布函数为$F_X(x), F_Y(y)$，现在，我们先来求$Y$的分布函数$F_Y(y)$。
+
+    由于随机变量$Y=g(x)$仅在$\alpha,\beta$内取值
+    \begin{itemize}
+        \item 当$y\leq\alpha$时
+        \begin{Equation}
+            F_Y(y)=P\qty{Y\leq y}=0\qquad y\leq\alpha
+        \end{Equation}
+        \item 当$y\geq\beta$时
+        \begin{Equation}
+            F_Y(y)=P\qty{Y\leq y}=1\qquad y\geq\beta
+        \end{Equation}
+        \item 当$\alpha<y<\beta$时
+        \begin{Equation}
+            F_Y(y)=P\qty{Y\leq y}=P\qty{g(X)\leq y}=P\qty{X\leq g^{-1}(y)}=F_X[g^{-1}(y)]
+        \end{Equation}
+    \end{itemize}
+    因此
+    \begin{Equation}
+        F_Y(y)=\begin{cases}
+            0,&y\leq\alpha\\
+            F_X[g^{-1}(y)],&\alpha<y<\beta\\
+            1,&y\geq\beta
+        \end{cases}
+    \end{Equation}
+    根据\fancyref{def:概率密度}，运用复合函数的求导法则
+    \begin{Equation}
+        f_Y(y)=F_Y'(y)=
+        \begin{cases}
+            f_X[g^{-1}(y)]\cdot g^{-1}(y)',&\alpha<y<\beta\\
+            0,&\text{otherwise}
+        \end{cases}
+    \end{Equation}
+    而对于$g'(x)<0$的情况，上式中$g^{-1}(y)'$会变为$-g^{-1}(y)'$，故可统一记为$\abs{g^{-1}(y)'}$。
+\end{Proof}
+
+\begin{BoxProperty}[正态分布的线性变换]
+    设随机变量$X\sim N(\mu,\sigma^2)$，则$X$的线性函数
+    \begin{Equation}
+        Y=aX+b
+    \end{Equation}
+    亦服从正态分布，且$Y\sim N(a\mu+b,(a\sigma)^2)$。
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{def:正态分布}，随机变量$X$的概率密度为
+    \begin{Equation}&[1]
+        f_X(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp[-\frac{(x-\mu)^2}{2\sigma^2}]
+    \end{Equation}
+    现在已知$g(x)=y=ax+b$，很容易求出反函数
+    \begin{Equation}&[2]
+        g^{-1}(y)=x=\frac{y-b}{a}
+    \end{Equation}
+    其导数为
+    \begin{Equation}&[3]
+        g^{-1}(y)=-\frac{1}{a}
+    \end{Equation}
+    因此，根据\fancyref{thm:随机变量的函数分布}
+    \begin{Equation}&[4]
+        f_Y(y)=\frac{1}{\abs{a}}f_X\qty(\frac{y-b}{a})
+    \end{Equation}
+    在\xrefpeq{4}中代入\xrefpeq{1}
+    \begin{Equation}
+        f_Y(y)=\frac{1}{\abs{a}}\frac{1}{\sqrt{2\pi}\sigma}\exp[-\frac{[(y-b)/a-\mu]^2}{2\sigma^2}]
+    \end{Equation}
+    在分式上下同时乘$a^2$
+    \begin{Equation}
+        f_Y(y)=\frac{1}{\sqrt{2\pi}\abs{a}\sigma}\exp[-\frac{[y-(a\mu+b)]^2}{2(a\sigma)^2}]
+    \end{Equation}
+    即有$Y\sim N(a\mu+b,(a\sigma)^2)$。
+\end{Proof}
+
+特别的，如果取$a=1/\sigma$，取$b=-\mu/\sigma$，则有
+\begin{Equation}
+    Y=\frac{1}{\sigma}X-\frac{\mu}{\sigma}=\frac{X-\mu}{\sigma}\qquad Y\sim N(0,1)
+\end{Equation}
+
+这就是\xref{subsec:正态分布}中\fancyref{lem:标准正态分布与正态分布}的结果。
