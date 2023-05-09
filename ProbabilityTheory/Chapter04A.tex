@@ -1,0 +1,109 @@
+\section{均值}
+
+\subsection{均值的定义}
+\begin{BoxDefinition}[均值]
+    设离散型随机变量$X$具有分布律$p_k$，若级数$\Sum[k=1][\infty]x_kp_k$绝对收敛，则定义
+    \begin{Equation}
+        E(X)=\Sum[k=1][\infty]x_kp_k
+    \end{Equation}
+
+    设连续型随机变量$X$具有概率密度$f(x)$，若积分$\Int[-\infty][\infty]xf(x)\dx$绝对收敛，则定义
+    \begin{Equation}
+        E(X)=\Int[-\infty][\infty]xf(x)\dx
+    \end{Equation}
+
+    在上两式中，$E(X)$分别称为离散型和连续型随机变量$X$的\uwave{均值}（Mean）。
+\end{BoxDefinition}
+
+均值有时也被称为\uwave{数学期望}（Mathematical Expectation）或\uwave{期望}（Expectation），但是，这两个名称都不如“均值”来的浅显易懂。尽管我们或许会觉得$E(X)$的表达式是一些怪异的级数和积分，看似和平均值毫无关系，但仔细观察一下，就会发现$E(x)$的算式其实是在计算这样一种加权平均，统计量即随机变量的每一取值，统计量的权值即随机变量在相应取值处的概率或者概率密度，两者相乘后求和或积分，结果反映的不就是随机变量的平均状态嘛？
+
+均值的定义中有一个细节，即要求计算加权平均的级数或积分绝对收敛，但是为什么一定要绝对收敛，不能仅仅是收敛呢？简而言之\cite{W5}，均值$E(x)$作为刻画“平均值”这一概念的数学定义，是具有其客观意义的，应当符合我们对“平均值”这个概念的朴素认识。而在我们的认知中，改变值的次序不应当改变“平均值”的结果。然而在微积分3中我们就曾学过，级数只有在绝对收敛时才能任意改换求和顺序而不改变结果，级数若只是条件收敛，那通过构造不同的求和顺序，我们就可以得到不同的，甚至是任意所需的“平均值”了，这显然是不合适的。
+
+\subsection{均值的性质}
+接下来我们来看数学期望的几个重要性质，均以连续性为例予以证明。
+\begin{BoxProperty}[常数的均值]
+    设$C$是常数，则有
+    \begin{Equation}
+        E(C)=C
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    显而易见。
+\end{Proof}
+
+\begin{BoxProperty}[随机变量常数倍的均值]
+    设$X$是随机变量，而$C$是常数，则有
+    \begin{Equation}
+        E(CX)=CE(X)
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    显而易见。
+\end{Proof}
+
+\begin{BoxProperty}[随机变量和的均值]
+    设$X,Y$是随机变量，则有
+    \begin{Equation}
+        E(X+Y)=E(X)+E(Y)
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    设$(X,Y)$的概率密度为$f(x,y)$，边缘概率密度为$f_X(X),f_Y(y)$，根据\fancyref{def:均值}
+    \begin{Equation}
+        E(X+Y)=\Int[-\infty][\infty]\Int[-\infty][\infty](x+y)f(x,y)\dx\dy
+    \end{Equation}
+    拆分为两项
+    \begin{Equation}
+        E(X+Y)=
+        \Int[-\infty][\infty]
+        \Int[-\infty][\infty]
+        xf(x,y)\dx\dy+
+        \Int[-\infty][\infty]
+        \Int[-\infty][\infty]
+        yf(x,y)\dx\dy
+    \end{Equation}
+    根据\fancyref{def:边缘概率密度}
+    \begin{Equation}
+        E(X+Y)=
+        \Int[-\infty][\infty]xf_X(x)\dx+
+        \Int[-\infty][\infty]yf_Y(y)\dy
+    \end{Equation}
+    这里$f_X(x),f_Y(y)$即$X,Y$各自的概率密度了，根据\fancyref{def:均值}
+    \begin{Equation}*
+        E(X+Y)=E(X)+E(Y)\qedhere
+    \end{Equation}
+\end{Proof}
+
+\fancyref{ppt:随机变量常数倍的均值}和\fancyref{ppt:随机变量和的均值}告诉我们，均值是一种线性运算。换言之，这表明，随机变量线性组合的均值，等于随机变量均值的线性组合。
+
+\begin{BoxProperty}[随机变量积的均值]
+    设$X,Y$是随机变量，且相互独立，则有
+    \begin{Equation}
+        E(XY)=E(X)E(Y)
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    设$(X,Y)$的概率密度为$f(x,y)$，边缘概率密度为$f_X(X),f_Y(y)$，根据\fancyref{def:均值}
+    \begin{Equation}&[1]
+        E(XY)=\Int[-\infty][\infty]\Int[-\infty][\infty]xyf(x,y)\dx\dy
+    \end{Equation}
+    根据\fancyref{thm:连续型随机变量的独立性}，由于$X,Y$相互独立
+    \begin{Equation}&[2]
+        f(x,y)=f_X(x)f_Y(y)
+    \end{Equation}
+    将\xrefpeq{2}代入\xrefpeq{1}
+    \begin{Equation}&[3]
+        E(XY)=\Int[-\infty][\infty]\Int[-\infty][\infty]xyf_X(x)f_Y(y)\dx\dy
+    \end{Equation}
+    将$x,y$的积分分离
+    \begin{Equation}&[4]
+        E(XY)=
+        \qty[\Int[-\infty][\infty]xf_X(x)\dx]
+        \qty[\Int[-\infty][\infty]yf_Y(y)\dy]
+    \end{Equation}
+    这里$f_X(x),f_Y(y)$即$X,Y$各自的概率密度了，根据\fancyref{def:均值}
+    \begin{Equation}*
+        E(XY)=E(X)E(Y)\qedhere
+    \end{Equation}
+\end{Proof}
