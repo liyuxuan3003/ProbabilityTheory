@@ -1,0 +1,52 @@
+\section{二维随机变量的独立性}
+在\xref{sec:独立性}中我们曾学习过独立事件的概念，本节将由此引出独立随机变量的定义。
+
+\begin{BoxDefinition}[随机变量的独立性]
+    设$F(x,y)$和$F_X(x),F_Y(y)$分别是二维随机变量$(X,Y)$的分布函数和边缘分布函数。
+
+    若对于所有的$x,y$，有
+    \begin{Equation}
+        P\qty{X\leq x, Y\leq y}=P\qty{X\leq xx}P\qty{Y\leq y}
+    \end{Equation}
+    即
+    \begin{Equation}
+        F(x,y)=F_X(x)F_Y(y)
+    \end{Equation}
+    则称随机变量$X$和$Y$是相互独立的。
+\end{BoxDefinition}
+
+\begin{BoxTheorem}[连续型随机变量的独立性]
+    设$(X,Y)$是连续型随机变量，则$X,Y$相互独立的条件等价于，对于任取的$(x,y)$
+    \begin{Equation}
+        f(x,y)=f_X(x)f_Y(y)
+    \end{Equation}
+\end{BoxTheorem}
+
+\begin{BoxTheorem}[离散型随机变量的独立性]
+    设$(X,Y)$是离散型随机变量，则$X,Y$相互独立的条件等价于，对于任取的$(x_i,y_j)$
+    \begin{Equation}
+        P\qty{X=x_i, Y=y_j}=P\qty{X=x_i}P\qty{Y=y_j}
+    \end{Equation}
+\end{BoxTheorem}
+
+根据\fancyref{def:二维正态分布}
+\begin{Equation}
+    f(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\qty{
+        \frac{-1}{2(1-\rho^2)}
+        \qty[
+        \frac{(x-\mu_1)^2}{\sigma_1^2}
+        -
+        2\rho\frac{(x-\mu_1)(x-\mu_2)}{\sigma_1\sigma_2}
+        +
+        \frac{(y-\mu_2)^2}{\sigma_2^2}]
+    }
+\end{Equation}
+根据\fancyref{fml:二维正态分布的边缘分布}
+\begin{Equation}
+    f_X(x)f_Y(y)=\frac{1}{2\pi\sigma_1\sigma_2}\exp\qty{-\frac{1}{2}\qty[\frac{(x-\mu_1)^2}{\sigma_1^2}+\frac{(y-\mu_2)^2}{\sigma_2^2}]}
+\end{Equation}
+注意到当$\rho=0$时才有
+\begin{Equation}
+    f(x,y)=f_X(x)f_Y(y)
+\end{Equation}
+由此可见，对于二维正态随机分布$(X,Y)$，$X,Y$相互独立的充要条件是参数$\rho=0$。
