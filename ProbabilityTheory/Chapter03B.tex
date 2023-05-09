@@ -1,0 +1,89 @@
+\section{二维随机变量的条件分布}
+在\xref{sec:条件概率}中我们曾学习过条件概率的概念，很容易由此引出条件概率分布的概念。
+
+\subsection{离散型二维随机变量的条件分布}
+
+设$(X,Y)$是二维离散型随机变量，其分布律为
+\begin{Equation}
+    P\qty{X=x_i, Y=y_j}=p_{ij}\qquad i,j=1,2,\cdots
+\end{Equation}
+根据\fancyref{def:边缘分布律}
+\begin{Gather}[8pt]
+    P\qty{X=x_i}=p_{i\cdot}=\Sum[j=1][\infty]p_{ij}\qquad i=1,2,\cdots\\
+    P\qty{Y=y_j}=p_{\cdot j}=\Sum[i=1][\infty]p_{ij}\qquad j=1,2,\cdots
+\end{Gather}
+根据\fancyref{def:条件概率}，考虑事件$\qty{Y=y_j}$已发生的条件下事件$\qty{X=x_i}$发生的概率
+\begin{Equation}
+    P\qty{X=x_i\mid Y=y_j}=
+    \frac{P\qty{X=x_i, Y=y_j}}{P\qty{Y=y_j}}=\frac{p_{ij}}{p_{\cdot j}}
+\end{Equation}
+由此，我们就可以在离散型二维随机变量中引入\uwave{条件分布律}的概念了。
+
+\begin{BoxDefinition}[条件分布律]
+    设$(X,Y)$是二维离散型随机变量，其联合分布律和边缘分布律分别为
+    \begin{Equation}
+        p_{ij}\qquad p_{i\cdot}\qquad p_{\cdot j}
+    \end{Equation}
+
+    对于固定的$j$，若$p_{\cdot j}>0$，则定义下式为$Y=y_j$条件下$X$的条件分布律
+    \begin{Equation}
+        P\qty{X=x_i\mid Y=y_j}=
+        \frac{p_{ij}}{p_{\cdot j}}\qquad i=1,2,\cdots
+    \end{Equation}
+    对于固定的$i$，若$p_{i\cdot}>0$，则定义下式为$X=x_i$条件下$Y$的条件分布律
+    \begin{Equation}
+        P\qty{Y=y_j\mid X=x_i}=
+        \frac{p_{ij}}{p_{i\cdot}}\qquad j=1,2,\cdots
+    \end{Equation}
+\end{BoxDefinition}
+
+\subsection{连续型二维随机变量的条件概率密度}
+设$(X,Y)$是二维连续型随机变量，然而，在连续型中，对于任意的$x,y$，都有
+\begin{Equation}
+    P\qty{X=x}=0\qquad
+    P\qty{Y=y}=0
+\end{Equation}
+因此，连续型中，我们不能直接用条件概率公式引入“条件分布”了。
+
+设$(X,Y)$的概率密度为$f(x,y)$，其关于$Y$的边缘概率密度为$f_Y(y)$，对于给定的$y$，对于任意固定的$\varepsilon>0$，对于任意的$x$，考虑当$X\leq x$时$Y$在$y$和$y+\varepsilon$间的条件概率
+\begin{Equation}
+    P\qty{X\leq x\mid y<Y\leq y+\varepsilon}
+\end{Equation}
+根据\fancyref{def:条件概率}
+\begin{Equation}
+    P\qty{X\leq x\mid y<Y\leq y+\varepsilon}=
+    \frac{P\qty{X\leq x, y<Y\leq y+\varepsilon}}{P\qty{y<Y\leq y+\varepsilon}}
+\end{Equation}
+概率可以用概率密度的积分表示
+\begin{Equation}
+    P\qty{X\leq x\mid y<Y\leq y+\varepsilon}=
+    \frac{\Int[-\infty][x]\Int[y][y+\varepsilon]f(x,y)\dy\dx}{\Int[y][y+\varepsilon]f_Y(y)\dy}
+\end{Equation}
+当$\varepsilon$很小时，由$y$至$y+\varepsilon$的积分中$f(x,y)$和$f(y)$可以视为无关$y$的常数
+\begin{Equation}
+    P\qty{X\leq x\mid y<Y\leq y+\varepsilon}=
+    \frac{\varepsilon\Int[-\infty][x]f(x,y)\dx}{\varepsilon f_Y(y)}
+\end{Equation}
+
+即
+\begin{Equation}
+    P\qty{X\leq x\mid y<Y\leq y+\varepsilon}=
+    \Int[-\infty][\infty]\frac{f(x,y)}{f_Y(y)}
+\end{Equation}
+
+这里计算出的是一个概率，仿照概率和概率密度的关系，可以定义以下的\uwave{条件概率密度}。
+
+\begin{BoxDefinition}[条件概率密度]
+    设$(X,Y)$是二维连续型随机变量，其联合概率密度和边缘概率密度分别为
+    \begin{Equation}
+        f(x,y)\qquad f_X(y)\qquad f_Y(y)
+    \end{Equation}
+    对于固定的$y$，若$f_Y(y)>0$，则定义下式为$Y=y$条件下$X$的条件概率密度
+    \begin{Equation}
+        f_{X\mid Y}(x\mid y)=\frac{f(x,y)}{f_Y(y)}
+    \end{Equation}
+    对于固定的$x$，若$f_X(x)>0$，则定义下式为$X=x$条件下$Y$的条件概率密度
+    \begin{Equation}
+        f_{Y\mid X}(y\mid x)=\frac{f(x,y)}{f_X(x)}
+    \end{Equation}
+\end{BoxDefinition}
