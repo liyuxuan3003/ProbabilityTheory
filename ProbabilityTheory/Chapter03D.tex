@@ -1,0 +1,114 @@
+\section{两个随机变量的函数的分布}
+在\xref{sec:随机变量的函数的分布}中，已经探讨了一个而随机变量的函数的分布，本节将讨论两个随机变量构成的函数的分布，然而，这一般而言是比较困难的，因此我们仅会就几个特殊情况进行分析。
+
+\subsection{随机变量和的分布}
+\begin{BoxFormula}[随机变量和的分布]
+    设$(X,Y)$是二维连续型随机变量，具有概率密度$f(x,y)$，则
+    \begin{Equation}
+        Z=X+Y
+    \end{Equation}
+    仍然为连续型随机变量，其概率密度为
+    \begin{Equation}
+        f_{X+Y}(z)=\Int[-\infty][\infty]f(z-y,y)\dd{y}=\Int[-\infty][\infty]f(x,z-x)\dd{x}
+    \end{Equation}
+    特别的，若$X,Y$是独立的，则可以简化为
+    \begin{Equation}
+        \qquad\qquad
+        f_{X+Y}(z)=f_{X}*f_{Y}=\Int[-\infty][\infty]f_X(z-y)f_Y(y)\dd{y}=\Int[-\infty][\infty]f_X(x)f_Y(z-x)\dd{x}
+        \qquad\qquad
+    \end{Equation}
+    这里$f_X*f_Y$代表$f_X$和$f_Y$的卷积。
+\end{BoxFormula}
+
+\begin{Proof}
+    首先，我们来求$Z=X+Y$的分布函数$F_Z(z)$，即有
+    \begin{Equation}&[1]
+        F_Z(z)=P\qty{Z\leq z}=P\qty{X+Y\leq z}=\Isnt[G]f(x,y)\dx\dy
+    \end{Equation}
+    这里的积分区域$G$是直线$x+y=z$及其左下半平面
+    \begin{Equation}&[2]
+        G: x+y\leq z
+    \end{Equation}
+    由此，\xrefpeq{1}中的二重积分可以转换为以下累次积分
+    \begin{Equation}
+        F_Z(z)=\Int[-\infty][\infty]\qty[\Int[-\infty][z-y]f(x,y)\dx]\dy
+    \end{Equation}
+    如果希望由$F_Z(z)$得到$f_Z(z)$，需要让$F_Z(z)$的表达式的最外层是$-\infty$至$z$的积分。
+
+    而为了达成这个目的，令$x=u-y$，则$\dx=\dd{u}$，且当$x=z-y$时$u=z$，故
+    \begin{Equation}
+        F_Z(z)=\Int[-\infty][\infty]\qty[
+        \Int[-\infty][z]f(u-y,y)\dd{u}]\dy
+    \end{Equation}
+    积分顺序是可以交换的
+    \begin{Equation}
+        F_Z(z)=\Int[-\infty][z]\qty[\Int[-\infty][\infty]f(u-y,y)\dy]\dd{u}
+    \end{Equation}
+    根据\fancyref{def:概率密度}
+    \begin{Equation}
+        F_Z(z)=\Int[-\infty][z]f_Z(u)\dd{u}
+    \end{Equation}
+    因此
+    \begin{Equation}
+        f_Z(u)=\Int[-\infty][\infty]f(u-y,y)\dy
+    \end{Equation}
+    这里将$u$改写为$z$不会有什么妨碍
+    \begin{Equation}
+        f_Z(z)=\Int[-\infty][\infty]f(z-y,y)\dy
+    \end{Equation}
+    类似的，如果前面换元由$x$改为$y$，则可以得到
+    \begin{Equation}
+        f_Z(z)=\Int[-\infty][\infty]f(x,z-x)\dx
+    \end{Equation}
+    而特别的，如果$X,Y$独立的，则
+    \begin{Equation}
+        f(z-y,y)=f_X(z-y)f_Y(y)\qquad
+        f(x,z-x)=f_X(x)f_Y(z-x)
+    \end{Equation}
+    此时积分式恰好符合$f_X$和$f_Y$的卷积，故亦可以记作$f_X*f_Y$。
+\end{Proof}
+
+\subsection{随机变量最大值和最小值的分布}
+除了$Z=X+Y$，我们还比较关心$Z=\max\qty{X,Y}$和$Z=\min\qty{X,Y}$，即两个随机变量间的最大值和最小值的分布，但这里，我们的结论更倾向于用分布函数而非概率密度函数表示。
+\begin{BoxFormula}[随机变量的最大值的分布]
+    设$(X,Y)$是二维连续型随机变量，\textbf{且相互独立}，具有分布函数$F(x,y)$，则
+    \begin{Equation}
+        Z=\max\qty{X,Y}
+    \end{Equation}
+    仍然为连续型随机变量，其分布函数为
+    \begin{Equation}
+        F_{\max}(z)=F_X(z)F_Y(z)
+    \end{Equation}
+\end{BoxFormula}
+\begin{Proof}
+    证明是容易的，由于$Z=\max\qty{X,Y}$
+    \begin{Equation}
+        F_{\max}(z)=P\qty{Z\leq z}=P\qty{X\leq z, Y\leq z}
+    \end{Equation}
+    根据\fancyref{def:独立性}
+    \begin{Equation}*
+        F_{\max}(z)=P\qty{X\leq z}P\qty{Y\leq z}=F_X(z)F_Y(z)\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxFormula}[随机变量的最小值的分布]
+    设$(X,Y)$是二维连续型随机变量，\textbf{且相互独立}，具有分布函数$F(x,y)$，则
+    \begin{Equation}
+        Z=\min{X,Y}
+    \end{Equation}
+    仍然为连续型随机变量，其分布函数为
+    \begin{Equation}
+        F_{\min}(z)=1-[1-F_X(z)][1-F_Y(z)]
+    \end{Equation}
+\end{BoxFormula}
+
+\begin{Proof}
+    证明也很容易，但最小值相较前面最大值有一点不同，由于$Z=\min\qty{X,Y}$，当$Z\leq z$时相当于是要求$X\leq z$或$Y\leq z$成立，而“或”在概率中不太好表达，故求其对立事件
+    \begin{Equation}
+        F_{\min}(z)=P\qty{Z\leq z}=1-P\qty{Z>z}=1-P\qty{X>z, Y>z}
+    \end{Equation}
+    根据\fancyref{def:独立性}
+    \begin{Equation}*
+        F_{\min}(z)=1-P\qty{X>z}P\qty{Y>z}=1-[1-F_X(z)][1-F_Y(z)]\qedhere
+    \end{Equation}
+\end{Proof}
