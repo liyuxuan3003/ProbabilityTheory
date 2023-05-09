@@ -1,0 +1,21 @@
+\documentclass{xStandalone}
+
+\begin{document}
+\begin{tikzpicture}
+
+\draw[rectangle,ultra thin] (-2.4,-2.4) rectangle (2.4,2.4);
+    
+\draw[thin,gray,->] (-2.1,0) -- (2.1,0) node[above] {$x$};
+\draw[thin,gray,->] (0,-2.1) -- (0,2.1) node[right] {$y$};
+
+\fill[blue,fill opacity=0.1] (1,1) coordinate (P) rectangle (-1.9,-1.9) coordinate (P');
+
+\draw[dashed] (P) -- (P|-P');
+\draw[dashed] (P) -- (P-|P');
+
+\path ($(P)!0.60!(P')$) node[above] {$F(x,y)$} node[below] {$X\leq x, Y\leq y$};
+
+\path (P) node[point] {} node[above right,black] {$(x,y)$};
+
+\end{tikzpicture}
+\end{document}

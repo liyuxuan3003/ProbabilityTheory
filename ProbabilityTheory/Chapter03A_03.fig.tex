@@ -1,0 +1,20 @@
+\documentclass{xStandalone}
+
+\begin{document}
+\begin{tikzpicture}
+
+\draw[rectangle,ultra thin] (-2.4,-2.4) rectangle (2.4,2.4);
+
+\draw[thin,gray,->] (-2.1,0) -- (2.1,0) node[above] {$x$};
+\draw[thin,gray,->] (0,-2.1) -- (0,2.1) node[right] {$y$};
+
+\fill[red,fill opacity=0.1] (1.9,1) rectangle (-1.9,-2);
+
+\draw[dashed] (1.9,1)--(-1.9,1);
+\path (0,1) coordinate (A) node[point] {} node[above left] {$y$};
+
+\path (-1,0) node[above] {$F_Y(y)$};
+\path (-1,0) node[below] {$Y\leq y$};
+
+\end{tikzpicture}
+\end{document}
