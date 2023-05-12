@@ -1,0 +1,442 @@
+\section{随机变量的方差}
+
+\subsection{方差的定义}
+作为随机变量，我们除了关心其平均值，我们往往还很关心随机变量相较平均值的偏差程度的大小，这反映了随机变量是否稳定。一种朴素的想法是，计算随机变量与随机变量均值的差的平均值，但是，这样计算，正偏和反偏将会相互抵消，而我们研究的就是偏离程度，正偏和反偏应当相互叠加才对。故正确做法是，\empx{计算随机变量与随机变量均值差的绝对值的平均值}
+\begin{Equation}
+    E\qty\big{\abs{X-E(X)}}
+\end{Equation}
+但绝对值的计算不太方便，因此，通常将绝对值改换为平方
+\begin{Equation}
+    E\qty\big{[X-E(X)]^2}
+\end{Equation}
+这个值，我们称之为方差。
+\begin{BoxDefinition}[方差]
+    设$X$是随机变量，若$E\qty{[X-E(X)]^2}$存在，则称它为$X$的\uwave{方差}（Variance），记为
+    \begin{Equation}
+        D(X)=\Var(X)=E\qty{[X-E(X)]^2}
+    \end{Equation}
+    若$X$为连续型随机变量，则
+    \begin{Equation}
+        D(X)=\Sum[k=1][\infty]\qty[x_k-E(X)]^2p_k
+    \end{Equation}
+    若$X$为离散型随机变量，则
+    \begin{Equation}
+        D(X)=\Int[-\infty][\infty]\qty[x-E(X)]^2f(x)\dx
+    \end{Equation}
+\end{BoxDefinition}
+方差在实际计算时，还有一个更为好用的公式。
+\begin{BoxFormula}[方差]*
+    设$X$是随机变量，其方差$D(X)$可按下式计算
+    \begin{Equation}
+        D(X)=E(X^2)-[E(X)]^2
+    \end{Equation}
+    若$X$为连续型随机变量，则
+    \begin{Equation}
+        D(X)=\Sum[k=1][\infty]x_k^2p_k-\qty(\Sum[k=1][\infty]x_kp_k)^2
+    \end{Equation}
+    若$X$为连续型随机变量，则
+    \begin{Equation}
+        D(X)=\Int[-\infty][\infty]x^2f(x)-\qty(\Int[-\infty][\infty]xf(x))^2
+    \end{Equation}
+\end{BoxFormula}
+\begin{Proof}
+    这很容易证明，根据\fancyref{def:方差}
+    \begin{Equation}
+        D(X)=E\qty{[X-E(X)]^2}=E\qty{X^2-2XE(X)+[E(X)]^2}
+    \end{Equation}
+    根据\fancyref{ppt:随机变量常数倍的均值}和\fancyref{ppt:随机变量和的均值}
+    \begin{Equation}
+        D(X)=E\qty\big{X^2}-2E\qty\big{XE(X)}+E\qty\big{[E(X)]^2}
+    \end{Equation}
+    根据\fancyref{ppt:常数的均值}，注意到这里$E(X)$都是常数
+    \begin{Equation}
+        D(X)=E\qty{X^2}-2E(X)E\qty{X}+E(X)^2
+    \end{Equation}
+    做些整理
+    \begin{Equation}
+        D(X)=E(X^2)-2E(X)^2+E(X)^2
+    \end{Equation}
+    即
+    \begin{Equation}*
+        D(X)=E(X^2)-E(X)^2\qedhere
+    \end{Equation}
+\end{Proof}
+
+\subsection{切比雪夫不等式}
+接下来，我们要介绍一个有关均值和方差的重要不等式。
+\begin{BoxTheorem}[切比雪夫不等式]
+    设随机变量$X$分别具有以下均值和方差
+    \begin{Equation}
+        E(X)=\mu\qquad
+        D(X)=\sigma^2
+    \end{Equation}
+    则对于任意正数$\varepsilon$，有以下不等式成立
+    \begin{Equation}
+        P\qty{\abs{X-\mu}\geq \varepsilon}\leq\frac{\sigma^2}{\varepsilon^2}
+    \end{Equation}
+    这一不等式称为\uwave{切比雪夫不等式}（Chebyshev's Inequality）。
+\end{BoxTheorem}\goodbreak
+\begin{Proof}
+    以连续型随机变量的情况为例予以证明，设$X$的概率密度为$f(x)$，故
+    \begin{Equation}
+        P\qty{\abs{X-\mu}\geq\varepsilon}=
+        \Int[\abs{x-\mu}\geq\varepsilon]f(x)\dx
+    \end{Equation}
+    在积分区间$\abs{x-\mu}\geq\varepsilon$中，显然有$\abs{x-\mu}^2/\varepsilon^2\leq 1$，故可放缩至
+    \begin{Equation}
+        P\qty{\abs{X-\mu}\geq\varepsilon}\leq\Int[\abs{x-\mu}\geq\varepsilon]\frac{\abs{x-\mu}^2}{\varepsilon^2}f(x)\dx
+    \end{Equation}
+    这里$1/\varepsilon^2$可以提至积分外
+    \begin{Equation}
+        P\qty{\abs{X-\mu}\geq\varepsilon}\leq\frac{1}{\varepsilon^2}\Int[\abs{x-\mu}\geq\varepsilon]\abs{x-\mu}^2f(x)\dx
+    \end{Equation}
+    进一步放缩，根据概率的非负性，令积分限放宽至$(-\infty,\infty)$
+    \begin{Equation}
+        P\qty{\abs{X-\mu}\geq\varepsilon}\leq\frac{1}{\varepsilon^2}\Int[-\infty][\infty]\abs{x-\mu}^2f(x)\dx
+    \end{Equation}
+
+    由于$\mu=E(X)$以及$\sigma=D(x)$，根据\fancyref{def:方差}，这里的积分就是
+    \begin{Equation}*
+        P\qty{\abs{X-\mu}\geq\varepsilon}\leq\frac{\sigma^2}{\varepsilon^2}\qedhere
+    \end{Equation}
+\end{Proof}
+
+\fancyref{thm:切比雪夫不等式}定量诠释了均值和方差的意义。 切比雪夫不等式指出，随机变量落在均值$\mu$两侧$\pm\varepsilon$区间$[\mu-\varepsilon,\mu+\varepsilon]$外的概率反比于区间半径的平方$\varepsilon^2$，具体而言
+\begin{itemize}
+    \item 如果$\varepsilon$取的比较大，那么随机变量落在$[\mu-\varepsilon,\mu+\varepsilon]$外的概率就比较小。
+    \item 如果$\varepsilon$取的比较小，那么随机变量落在$[\mu-\varepsilon,\mu+\varepsilon]$外的概率就比较大。
+\end{itemize}
+
+而方差$\sigma^2$即此处的比例系数，具体而言，在$\varepsilon$一定时，方差$\sigma^2$越大则随机变量落在区间外的概率越大，这也是很合理的，因为，方差代表的正是随机变量相对随机变量均值的偏差程度。
+
+\subsection{方差的性质}
+\begin{BoxProperty}[常数的方差]
+    设$C$为常数，则有
+    \begin{Equation}
+        D(C)=0
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    根据\fancyref{def:方差}和\fancyref{ppt:常数的均值}
+    \begin{Equation}*
+        D(C)=E\qty{[C-E(C)]^2}=E\qty{[C-C]^2}=E(0)=0\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxProperty}[随机变量常数倍的方差]
+    设$X$是随机变量，而$C$是常数，则有
+    \begin{Equation}
+        D(CX)=C^2D(X)
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    根据\fancyref{def:方差}和\fancyref{ppt:随机变量常数倍的均值}
+    \begin{Equation}*
+        D(CX)=E\qty{[CX-E(CX)]^2}=C^2E\qty{[X-E(X)]^2}=C^2D(X)\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxProperty}[随机变量加常数的方差]
+    设$X$是随机变量，而$C$是常数，则有
+    \begin{Equation}
+        D(C+X)=D(X)
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    根据\fancyref{def:方差}和\fancyref{ppt:随机变量和的均值}和\fancyref{ppt:常数的均值}
+    \begin{Equation}*
+        D(C+X)=E\qty{[C+X-E(C+X)]^2}=E\qty{[X-E(X)]^2}=D(X)\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxProperty}[随机变量和的方差]
+    设$X,Y$是随机变量，则有
+    \begin{Equation}&[A]
+        D(X+Y)=D(X)+D(Y)+2E\qty{[X-E(X)][Y-E(Y)]}
+    \end{Equation}
+    特别的，若$X,Y$相互独立，则
+    \begin{Equation}&[B]
+        D(X+Y)=D(X)+D(Y)
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{def:方差}和\fancyref{ppt:随机变量和的均值}
+    \begin{Equation}
+        \qquad\qquad
+        D(X+Y)=E\qty{[(X+Y)-E(X+Y)]^2}=E\qty{[X+Y-E(X)-E(Y)]^2}
+        \qquad\qquad
+    \end{Equation}
+    将$X,E(X)$和$Y,E(Y)$放在一起
+    \begin{Equation}
+        D(X+Y)=E\qty{[(X-E(X))+(Y-E(Y))]^2}
+    \end{Equation}
+    平方展开
+    \begin{Equation}
+        \qquad
+        D(X+Y)=E\qty{[X-E(X)]^2}+E\qty{[Y-E(Y)]^2}+2E\qty\big{[X-E(X)][Y-E(Y)]}
+        \qquad
+    \end{Equation}
+    这里前两项恰是$D(X)$和$D(Y)$
+    \begin{Equation}
+        D(X+Y)=D(X)+D(Y)+2E\qty{[X-E(X)][Y-E(Y)]}
+    \end{Equation}
+    而关于上式第三项，记为$A$
+    \begin{Equation}
+        A=2E\qty{[X-E(X)][Y-E(Y)]}
+    \end{Equation}
+    将其展开
+    \begin{Equation}
+        A=2E\qty[XY-XE(Y)-YE(X)+E(X)E(Y)]
+    \end{Equation}
+    将外层的均值$E$向内应用
+    \begin{Equation}
+        A=2[E(XY)-E(X)E(Y)-E(X)E(Y)+E(X)E(Y)]
+    \end{Equation}
+    即
+    \begin{Equation}
+        A=2[E(XY)-E(X)E(Y)]
+    \end{Equation}
+    而若$X,Y$独立，根据\fancyref{ppt:随机变量积的均值}
+    \begin{Equation}
+        E(XY)-E(X)E(Y)
+    \end{Equation}
+    此时$A=0$，这就得到了\xrefpeq{B}。
+\end{Proof}
+
+\begin{BoxProperty}[方差为零的充要条件]
+    方差$D(X)=0$的充要条件是$X$以概率$1$取常数$E(X)$，即
+    \begin{Equation}
+        P\qty{X=E(X)}=1
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    \subparagraph{充分性} 已知条件
+    \begin{Equation}&[1]
+        P\qty{X=E(X)}=1
+    \end{Equation}
+    上式亦可以改写为
+    \begin{Equation}&[2]
+        P\qty{X^2=[E(X)]^2}=1
+    \end{Equation}
+    这里\xrefpeq{2}指出，随机变量$X^2$是常数$E(X)^2$，根据\fancyref{ppt:常数的均值}
+    \begin{Equation}
+        D(X)=E(X^2)-[E(X)]^2=[E(X)]^2-[E(X)]^2=0
+    \end{Equation}
+
+    \subparagraph{必要性} 已知$D(X)=0$，应用反证法，假设$P\qty{X=E(X)}<1$，则对于某一个数$\varepsilon>0$，应有$P\qty{X-E(X)\geq\varepsilon}>0$，但是根据\fancyref{thm:切比雪夫不等式}，对于任意$\varepsilon>0$，有
+    \begin{Equation}
+        P\qty{\abs{X-E(X)}\geq\varepsilon}=\frac{\sigma^2}{\varepsilon}
+    \end{Equation}
+    而由于此处方差$\sigma^2=D(X)=0$
+    \begin{Equation}
+        P\qty{\abs{X-E(X)}\geq\varepsilon}=0
+    \end{Equation}
+    这与假设矛盾，故假设不成立，因此$P\qty{X=E(X)}=1$。
+\end{Proof}
+
+\subsection{典型随机分布的均值与方差}
+在这一小节，我们将会计算\xref{chap:随机变量及其分布}中引入的若干典型分布的均值和方差，尽管计算上有所不同的，但方法是一致的，首先计算$E(X)$和$E(X^2)$，再用$D(X)=E(X^2)-E(X)^2$求出方差。
+
+\begin{BoxProperty}[二项分布的数值特征]
+    若随机变量$X$服从二项分布，即$X\sim B(n,p)$，则其均值和方差分别为
+    \begin{Equation}&[]
+        E(X)=np\qquad
+        D(X)=np(1-p)
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{def:二项分布}，我们知道，二项分布$B(n,p)$的实质是$n$重伯努利分布，这就是说，二项分布的随机变量$X$可以视为$n$个0--1分布的随机变量$X_1,X_2,\cdots,X_k$的和
+    \begin{Equation}&[0]
+        X=X_1+X_2+\cdots+X_k
+    \end{Equation}
+    而0--1分布的分布律是很简单的
+    \begin{Equation}&[1]
+        P\qty{X_k=0}=1-p\qquad
+        P\qty{X_k=1}=p
+    \end{Equation}
+    根据\fancyref{def:均值}
+    \begin{Equation}&[2]
+        E(X_k)=0\times(1-p)+1\times p=p
+    \end{Equation}
+    类似可以算得
+    \begin{Equation}&[3]
+        E(X_k^2)=0^2\times(1-p)+1^2\times p=p
+    \end{Equation}
+    根据\fancyref{def:方差}，代入\xrefpeq{2}和\xrefpeq{3}
+    \begin{Equation}&[4]
+        D(X_k)=E(X_k^2)-E(X_k)^2=p-p^2=p(1-p)
+    \end{Equation}\goodbreak
+    就\xrefpeq{0}应用\fancyref{ppt:随机变量和的均值}，并代入\xrefpeq{2}
+    \begin{Equation}&[5]
+        E(X)=E\qty(\Sum[k=1][n]X_k)=\Sum[k=1][n]E(X_k)=np
+    \end{Equation}
+    就\xrefpeq{0}应用\fancyref{ppt:随机变量和的方差}，并代入\xrefpeq{4}
+    \begin{Equation}&[6]
+        D(X)=D\qty(\Sum[k=1][n]X_k)=\Sum[k=1][n]D(X_k)=np(1-p)
+    \end{Equation}
+    这就证明了\xrefpeq{}。
+\end{Proof}
+\fancyref{ppt:二项分布的数值特征}中的$E(x)=np$可以这么理解，试想抛$1$次硬币正面朝上的概率是$0.5$，那么该公式就告诉我们，抛$100$次硬币正面朝上的次数的数学期望是$50$次。
+
+\begin{BoxProperty}[泊松分布的数值特征]
+    若随机变量$X$服从泊松分布，即$X\sim P(\lambda)$，则其均值和方差分别为
+    \begin{Equation}&[]
+        E(X)=\lambda\qquad
+        D(X)=\lambda
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    根据\fancyref{def:泊松分布}，泊松分布服从的是以下分布律
+    \begin{Equation}&[1]
+        P\qty{X=k}=\frac{\lambda^k\e^{-k}}{k!}
+    \end{Equation}
+    根据\fancyref{def:均值}，计算$E(X)$
+    \begin{Equation}&[2]
+        \qquad\qquad
+        E(X)=\Sum[k=0][\infty]k\frac{\lambda^k\e^{-k}}{k!}=\Sum[k=1][\infty]k\frac{\lambda^k\e^{-k}}{k!}=\lambda\e^{-k}\Sum[k=1][\infty]\frac{\lambda^{k-1}}{(k-1)!}=\lambda\e^{-\lambda}\e^{\lambda}=\lambda
+        \qquad\qquad
+    \end{Equation}
+    而为了计算$E(X^2)$，我们要预先做些处理，运用\fancyref{ppt:随机变量和的均值}
+    \begin{Equation}&[3]
+        E(X^2)=E[X(X-1)+X]=E[X(X-1)]+E(X)
+    \end{Equation}
+    在\xrefpeq{3}中，$E(X)$已经计算过了，下面计算$E[X(X-1)]$
+    \begin{Equation}&[4]
+        E[X(X-1)]=\Sum[k=0][\infty]k(k-1)\frac{\lambda^k\e^{-\lambda}}{k!}=\Sum[k=2][\infty]k(k-1)\frac{\lambda^k}{k!}=\lambda^2\e^{-\lambda}\Sum[k=2][\infty]\frac{\lambda^{k-2}}{(k-2)!}=\lambda^2\e^{-\lambda}\e^{\lambda}=\lambda^2
+    \end{Equation}
+    这里\xrefpeq{2}和\xrefpeq{4}的关键都在于运用$\e^x=1+x+x^2+\cdots$，将它们代入\xrefpeq{3}
+    \begin{Equation}
+        E(X^2)=\lambda^2+\lambda
+    \end{Equation}
+    根据\fancyref{def:方差}，计算$D(X)$
+    \begin{Equation}
+        D(X)=E(X^2)-E(X)^2=\lambda
+    \end{Equation}
+    这就证明了\xrefpeq{}。
+\end{Proof}\nopagebreak
+
+\fancyref{ppt:泊松分布的数值特征}指出，泊松分布的期望和方差均为$\lambda$。
+
+以上是两个典型离散分布的数值特征，接下来我们再来研究三个典型连续分布的数值特征。
+
+\begin{BoxProperty}[均匀分布的数值特征]
+    若随机变量$X$服从均匀分布，即$X\sim U(a,b)$，则其均值和方差为
+    \begin{Equation}
+        E(X)=\frac{b+a}{2}\qquad D(X)=\frac{(b-a)^2}{12}
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    根据\fancyref{def:均匀分布}
+    \begin{Equation}&[1]
+        f(x)=
+        \begin{cases}
+            \mal{\frac{1}{b-a}},&a<x<b\\[3mm]
+            0,&\text{otherwise}
+        \end{cases}
+    \end{Equation}
+    根据\fancyref{def:均值}，计算$E(X)$
+    \begin{Equation}&[2]
+        \qquad
+        E(X)=\Int[-\infty][\infty]xf(x)\dx=\Int[a][b]\frac{x}{b-a}\dx=\frac{1}{b-a}\eval{\frac{x^2}{2}}_a^b=\frac{1}{b-a}\frac{b^2-a^2}{2}=\frac{b+a}{2}\qquad
+    \end{Equation}
+    根据\fancyref{def:均值}，计算$E(X^2)$
+    \begin{Equation}&[3]
+        E(X^2)=\Int[-\infty][\infty]x^2f(x)\dx=\Int[a][b]\frac{x^2}{b-a}\dx=\eval{\frac{1}{b-a}\frac{x^3}{3}}_a^b=\frac{1}{b-a}\frac{b^3-a^3}{3}=\frac{b^2+ab-a^2}{3}
+    \end{Equation}
+    这里应用了$b^3-a^3=(b-a)(b^2+ab+a^2)$展开。
+    
+    因而，根据\fancyref{def:方差}
+    \begin{Equation}
+        D(X)=E(X^2)-E(X)^2=\frac{b^2+ab+a^2}{3}-\frac{b^2+2ab+a^2}{4}
+    \end{Equation}
+    通分，合并整理
+    \begin{Equation}*
+        D(X)=\frac{4b^2+4ab+4a^2}{12}-\frac{3b^2+6ab+3a^2}{12}=\frac{b^2-2ab+a^2}{12}=\frac{(b-a)^2}{12}\qedhere
+    \end{Equation}
+\end{Proof}
+
+\fancyref{ppt:均匀分布的数值特征}中，我们可能会困惑，为什么均匀分布的方差$D(X)$并不是零？这是因为，均匀分布中的均匀是指随机变量在$[a,b]$上的出现机会是相同的，方差则是描述随机变量偏离平均值的程度，两者没有任何联系。方差为零则随机变量只会取一个值。
+
+\begin{BoxProperty}[指数分布的数值特征]
+    若随机变量服从指数分布，即$X\sim\Exp(\theta)$，则其均值和方差为
+    \begin{Equation}
+        E(X)=\theta\qquad
+        D(X)=\theta^2
+    \end{Equation}
+\end{BoxProperty}\goodbreak
+
+\begin{Proof}
+    根据\fancyref{def:指数分布}
+    \begin{Equation}&[1]
+        f(x)=
+        \begin{cases}
+            \mal{\frac{1}{\theta}\e^{-x/\theta}},&x>0\\[3mm]
+            0,&x\leq 0\\
+        \end{cases}
+    \end{Equation}
+    根据\fancyref{def:均值}，计算$E(X)$，运用分部积分法
+    \begin{Equation}&[2]
+        \quad
+        E(X)=\frac{1}{\theta}\Int[0][\infty]x\e^{-x/\theta}\dx=-x\e^{-x/\theta}|_0^{\infty}+\Int[0][\infty]\e^{-x/\theta}\dx=-(x\e^{-x/\theta})|_0^{\infty}-(\theta\e^{-x/\theta})|_0^{\infty}=\theta
+        \quad
+    \end{Equation}
+    根据\fancyref{def:均值}，计算$E(X)$，运用分部积分法
+    \begin{Equation}&[3]
+        \qquad\qquad
+        E(X^2)=\frac{1}{\theta}\Int[-\infty][\infty]x^2\e^{-x/\theta}\dx=-(x^2\e^{-x/\theta})|_0^{\infty}+\Int[0][\infty]2x\e^{-x/\theta}\dx=2\theta^2
+        \qquad\qquad
+    \end{Equation}
+    \xrefpeq{3}中最后的积分在\xrefpeq{2}中已经计算过了，即$\Int[0][\infty]x\e^{-x/\theta}=\theta^2$。
+
+    根据\fancyref{def:方差}，计算$D(X)$
+    \begin{Equation}*
+        D(X)=E(X^2)-E(X)^2=2\theta^2-\theta^2=\theta^2\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxProperty}[正态分布的数值特征]
+    若随机变量服从正态分布，即$X\sim N(\mu,\sigma^2)$，则其均值和方差为
+    \begin{Equation}
+        E(X)=\mu\qquad D(X)=\sigma^2
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{def:正态分布}
+    \begin{Equation}
+        f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp[-\frac{(x-\mu)^2}{2\sigma^2}]
+    \end{Equation}
+    根据\fancyref{lem:标准正态分布与正态分布}，若引入代换变量
+    \begin{Equation}
+        Z=\frac{X-\mu}{\sigma}
+    \end{Equation}
+    则$Z$就会服从标准正态分布$N(0,1)$，即
+    \begin{Equation}
+        \varphi(t)=\frac{1}{\sqrt{2\pi}}\e^{-t^2/2}
+    \end{Equation}
+    根据\fancyref{def:均值}，计算$E(Z)$，积分的要点是$t\dd{t}=\dd{t^2/2}$
+    \begin{Equation}
+        E(Z)=\frac{1}{\sqrt{2\pi}}\Int[-\infty][\infty]t\e^{-t^2/2}\dd{t}=\eval{\frac{-1}{\sqrt{2\pi}}\e^{-t^2/2}}_{-\infty}^{\infty}=0
+    \end{Equation}
+    根据\fancyref{def:均值}，计算$E(Z^2)$，这里$\e^{-t^2/2}$的积分即$\sqrt{2\pi}$，这是高斯积分的结果
+    \begin{Equation}
+        \qquad\qquad
+        E(Z^2)=\frac{1}{\sqrt{2\pi}}\Int[-\infty][\infty]t^2
+        \e^{-t^2/2}\dd{t}=\eval{\frac{-1}{\sqrt{2\pi}}t\e^{-t^2/2}}_{-\infty}^{\infty}+\frac{1}{\sqrt{2\pi}}\Int[-\infty][\infty]\e^{-t^2/2}\dd{t}=1
+        \qquad\qquad
+    \end{Equation}
+    根据\fancyref{def:方差}
+    \begin{Equation}
+        D(Z)=E(Z^2)-E(Z)^2=1
+    \end{Equation}
+    而$X=\sigma Z+\mu$，依据\fancyref{ppt:随机变量和的均值}和\fancyref{ppt:随机变量和的方差}
+    \begin{Equation}*
+        E(X)=E(\sigma Z+\mu)=\sigma E(Z)+\mu=\mu\qquad
+        D(X)=D(\sigma Z+\mu)=\sigma^2D(Z)=\sigma^2\qedhere
+    \end{Equation}
+\end{Proof}
+
+\fancyref{ppt:正态分布的数值特征}明确了正态分布两个参数$\mu,\sigma^2$的意义，参数$\mu$即正态分布的均值$E(X)$，参数$\sigma^2$即正态分布的方差$D(X)$，这也是为何正态分布如此重要的原因。
