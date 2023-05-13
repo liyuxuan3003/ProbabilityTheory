@@ -204,7 +204,7 @@ $p_{\cdot j}$&$p_{\cdot 1}$&$p_{\cdot 2}$&$\cdots$&$p_{\cdot B}$&/\\
     \hspace{0.2cm}
     \includegraphics[scale=1.0]{Mathematica/output/Gauss2DColorbar.pdf}
 \end{Figure}
-二维正态分布中的参数$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$的意义与一维情形相类似，$\mu_1,\mu_2$代表了$x,y$方向上的中心（均值），$\sigma_1,\sigma_2$代表了$x,y$方向上的集中程度（方差），$\rho$则是二维正态分布中的一个新参数，它代表了$x,y$方向上的某种联系（协方差），\xref{tab:二维正态分布的参数}以等值线表现了参数的意义，形象的说，参数$\rho$会使得图形在$45^{\circ}$方向上被拉长，同时，参数$\rho$越大图形的中心也会更高。
+二维正态分布中的参数$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$的意义与一维情形相类似，$\mu_1,\mu_2$代表了$x,y$方向上的中心（均值），$\sigma_1,\sigma_2$代表了$x,y$方向上的集中程度（方差），$\rho$则是二维正态分布中的一个新参数，它代表了$x,y$方向上的某种联系（相关系数），\xref{tab:二维正态分布的参数}以等值线表现了参数的意义，形象的说，参数$\rho$会使得图形在$45^{\circ}$方向上被拉长，同时，参数$\rho$越大图形的中心也会更高。
 
 \begin{Table}[二维正态分布的参数]{|c|c|c|c|c|}
 <>
@@ -280,7 +280,7 @@ $\rho=0.75$\\
         \qquad
         f(x,y)=\frac{1}{2\pi\sigma_1\sigma_2\sqrt{1-\rho^2}}\exp\qty{
             -\frac{(x-\mu_1)^2}{2\sigma_1^2}+
-            \frac{-1}{2(1-\rho)^2}
+            \frac{-1}{2(1-\rho^2)}
             \qty(\frac{y-\mu_2}{\sigma_2}-\rho\frac{x-\mu_1}{\sigma_1})^2
         }
         \qquad
@@ -291,18 +291,18 @@ $\rho=0.75$\\
         \exp[-\frac{(x-\mu_1)^2}{2\sigma_1^2}]
         \Int[-\infty][\infty]
         \exp[
-            \frac{-1}{2(1-\rho)^2}
+            \frac{-1}{2(1-\rho^2)}
             \qty(\frac{y-\mu_2}{\sigma_2}-\rho\frac{x-\mu_1}{\sigma_1})^2
             ]\dd{y}
     \end{Equation}
     作变量代换
     \begin{Equation}&[7]
-        t=\frac{1}{\sqrt{1-\rho}}
+        t=\frac{1}{\sqrt{1-\rho^2}}
         \qty(\frac{y-\mu_2}{\sigma_2}-\rho\frac{x-\mu_1}{\sigma_1})
     \end{Equation}
     注意到
     \begin{Equation}&[8]
-        \dd{y}=\frac{\sqrt{1-\rho}}{\sigma_2}\dd{t}
+        \dd{y}=\frac{\sqrt{1-\rho^2}}{\sigma_2}\dd{t}
     \end{Equation}
     将\xrefpeq{7}和\xrefpeq{8}代入\xrefpeq{6}
     \begin{Equation}&[9]
