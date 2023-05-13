@@ -1,0 +1,105 @@
+\section{大数定律}
+在前几章中，我们一直在做这样的事情，我们称，随机变量服从某种概率分布，在这些概率分布下，随机变量具有什么样的期望。但问题是，概率和期望这些数学概念对于我们的现实世界有何种指导意义？不妨假设随机变量$X$是掷骰子的点数，有$1,2,3,4,5,6$六个取值，我们可以滔滔不绝的谈论：“瞧！这个$X$取到$1,2,3,4,5,6$的概率是均等的，都是$1/6$。这个$X$的数学期望是$3.5$，等等。”当然咯，这些都没错，但问题是，这到底告诉我们什么？我们面对的是一个骰子！它只会给出$1,2,3,4,5,6$中的一个值，你谈的概率，你谈的期望，又在说什么？
+
+大数定律正面回答了这个问题，关键在于将随机事件平行重复多次，举例来说
+\begin{itemize}
+    \item 辛钦大数定律指出，重复投骰子的次数足够多时，投出点数的算数平均将接近期望。
+    \item 伯努利大数定律指出，重复投骰子的次数足够多时，投出每个点数的频率将接近其概率。
+\end{itemize}
+那么，怎么用数学的语言来描述这个过程呢。设$X$是我们要研究的随机事件所对应的随机变量，而将随机事件重复$n$次，就相当于是令$X_1,X_2,\cdots,X_n,\cdots$为相互独立且具有与$X$相同分布的随机变量列，并取其中的前$n$个。显然，由于$X_1,X_2,\cdots,X_n$都是随机变量，由它们计算出的算数平均以及这其中各值的出现频率也都是一个随机变量。两个大数定律描述的，就是“算数平均”和“频率”这两个随机变量与“期望”和“概率”这两个确定值间的关系。
+
+\subsection{辛钦大数定律}
+在本小节，我们将介绍辛钦大数定律，它讨论的是“期望”和“算数平均”间的关系。
+\begin{BoxLaw}[辛钦大数定律]*
+    设$X_1,X_2,\cdots$是相互独立的，且服从同一分布的随机变量的序列。
+
+    故$X_1,X_2,\cdots$具有相同的期望，记之为
+    \begin{Equation}
+        E(X_k)=\mu\qquad k=1,2,\cdots
+    \end{Equation}
+    现作前$n$个随机变量的算数平均$(1/n)\Sum[k=1][n]X_k$，则对于任意$\varepsilon>0$，有
+    \begin{Equation}
+        \Lim[n\to\infty]P\qty{\abs{\frac{1}{n}\Sum[k=1][n]X_k-\mu}<\varepsilon}=1
+    \end{Equation}
+    该结论称为\uwave{辛钦大数定律}（Khinchin's Law of Large Numbers）。
+\end{BoxLaw}
+
+\begin{Proof}
+    我们仅在随机变量$X_k$的方差存在的条件下证明该结果，记
+    \begin{Equation}
+        D(X_k)=\sigma^2\qquad k=1,2,\cdots
+    \end{Equation}
+    根据\fancyref{ppt:随机变量和的均值}
+    \begin{Equation}
+        E\qty(\frac{1}{n}\Sum[k=1][n]X_k)=\frac{1}{n}\Sum[k=1][n]E(X_k)=\frac{1}{n}\Sum[k=1][n]\mu=\frac{1}{n}n\mu=\mu
+    \end{Equation}
+    根据\fancyref{ppt:随机变量和的方差}，考虑到这里$X_1,X_2,\cdots,X_k$是相互独立的
+    \begin{Equation}
+        D\qty(\frac{1}{n}\Sum[k=1][n]X_k)=\frac{1}{n^2}\Sum[k=1][n]D(X_k)=\frac{1}{n^2}\Sum[k=1][n]n\sigma^2=\sigma^2/n
+    \end{Equation}
+    根据\fancyref{thm:切比雪夫不等式}，并考虑到概率的上限为$1$
+    \begin{Equation}
+        1-
+        \frac{\sigma^2/n}{\varepsilon}\leq P\qty{\abs{\frac{1}{n}\Sum[k=1][n]X_k-\mu}<\varepsilon}\leq 1
+    \end{Equation}
+    在上式中令$n\to\infty$，根据夹逼定理
+    \begin{Equation}*
+        \Lim[n\to\infty]P\qty{\abs{\frac{1}{n}\Sum[k=1][n]X_k-\mu}<\varepsilon}=1\qedhere
+    \end{Equation}
+\end{Proof}
+辛钦大数定律指出
+\begin{center}
+    当$n\to\infty$时，对于任意取定的$\varepsilon$，算数平均与期望的差小于$\varepsilon$的概率均为$1$。
+\end{center}
+这告诉我们，数学期望的实际意义，即重复试验次数足够多时的算数平均值。
+
+\subsection{伯努利大数定律}
+在本小节，我们将介绍伯努利大数定律，它讨论的是随机变量“频率”和“概率”间的关系。
+
+\begin{BoxLaw}[伯努利大数定律]
+    设$X_1,X_2,\cdots$是相互独立的，且服从同一分布的随机变量的序列。
+
+    故$X_1,X_2,\cdots$具有相同的概率分布，记其中事件$X_k=x_0$的发生概率为
+    \begin{Equation}
+        P\qty{X_k=x_0}=p
+    \end{Equation}
+    现记前$n$个随机变量中$X_k=x_0$的出现频数为$f_A$，则对于任意$\varepsilon>0$，有
+    \begin{Equation}
+        \Lim[n\to\infty] P\qty{\abs{\frac{f_A}{n}-p}<\varepsilon}=1
+    \end{Equation}
+    该结论称为\uwave{伯努利大数定律}（Bernoulli's Law of Large Numbers）。
+\end{BoxLaw}
+
+\begin{Proof}
+    伯努利大数定律在一定意义上，可以视为对辛钦大数定律的一种应用。
+
+    伯努利大数定律证明的关键在于，频数$f_A$服从伯努利分布
+    \begin{Equation}&[1]
+        f_A\sim B(n,p)
+    \end{Equation}
+    这是因为对于每次试验，事件$X_k=x_0$发生的概率是$p$，而频数$f_A$表示的是前$n$次这样的试验中，事件$X_k=x_0$发生的总次数，这符合伯努利分布$B(n,p)$的实际意义。如果我们构造随机变量列$Y_1,Y_2,\cdots,Y_n$，当$X_k=x_0$时令$Y_k=1$，当$X_k\neq x_0$时令$Y_k=0$，则
+    \begin{Equation}&[2]
+        f_A=\Sum[k=1][n]Y_k
+    \end{Equation}
+    由于$Y_k$均服从参数$p$的(0--1)分布，因而
+    \begin{Equation}&[3]
+        E(Y_k)=p
+    \end{Equation}
+    由于$Y_k$之间还是相互独立的，因此根据\fancyref{fml:辛钦大数定律}
+    \begin{Equation}&[4]
+        \Lim[n\to\infty]P\qty{\abs{\frac{1}{n}\Sum[k=1][n]Y_k-p}<\varepsilon}=1
+    \end{Equation}
+    代入\xrefpeq{2}
+    \begin{Equation}*
+        \Lim[n\to\infty]P\qty{\abs{\frac{f_A}{n}-p}<\varepsilon}=1\qedhere
+    \end{Equation}
+\end{Proof}
+
+\fancyref{law:伯努利大数定律}指出
+\begin{center}
+    当$n\to\infty$时，对于任意取定的$\varepsilon$，频率与概率的差小于$\varepsilon$的概率均为$1$。
+\end{center}
+
+这告诉我们，在实际应用中，\empx{概率可以通过重复试验次数足够多时的频率推定}，这也就是我们所说的“频率稳定性”的真正含义。频率与概率间的这种关系，是整个概率论的根基所在。
+
+这里还要指出的是，以上我们讨论的两个\uwave{大数定律}（Law of Large Numbers, LLN），其实都是所谓\uwave{弱大数定律}（Weak Law of Large Numbers, WLLN），与之对应的是\uwave{强大数定律}（Strong Law of Large Numbers, SLLN），两者的差异在于收敛方式的不同，后者的收敛性更强些。

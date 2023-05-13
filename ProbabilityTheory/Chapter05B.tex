@@ -1,0 +1,41 @@
+\section{中心极限定理}
+中心极限定理讨论的是另外一个问题，为什么正态分布如此重要？在实践中，我们往往会假定许多随机变量服从正态分布，例如在大学物理实验中，我们的所有误差理论都是建立在物理量的测量结果服从正态分布的基础上的。但是，为何如此呢？为什么物理量的测量服从的不是指数分布或均匀分布呢？这是因为，\empx{实际问题中的随机变量，往往是大量相互独立的随机因素的总和}，例如，物理量的测量误差就来自于测量仪器中每一个零件生产过程中的微小误差。
+
+\uwave{中心极限定理}（Central Limit Theorem, CLT）就指出，对于这里由大量相互独立的随机因素构成的随机变量（现实中大部分随机变量都可以归结于此），无论每个微小的随机因素具体服从何种分布，期望如何，方差如何，它们的总和构成的随机变量总会近似服从正态分布。
+
+\begin{BoxTheorem}[李雅普诺夫定理]*
+    设随机变量$X_1,X_2,\cdots,X_n,\cdots$相互独立，它们分别具有期望和方差
+    \begin{Equation}
+        E(X_k)=\mu_k\qquad
+        D(X_k)=\sigma_k^2\qquad k=1,2,\cdots
+    \end{Equation}
+    且记
+    \begin{Equation}
+        B_n^{\alpha}=\Sum[k=1][n]\sigma_k^{\alpha}
+    \end{Equation}
+    现在我们关注$X_1,X_2,\cdots,X_n,\cdots$前$n$项和$\eta_n$的分布
+    \begin{Equation}
+        \eta_n=\Sum[k=1][n]X_k
+    \end{Equation}
+    那么，若存在$\delta>0$，使得当$n\to\infty$时，满足\footnote[2]{这个条件通常来说都是可以满足的，尤其是$X_1,X_2,\cdots,X_n,\cdots$服从同一分布时。}
+    \begin{Equation}
+        \Lim[n\to\infty]\frac{1}{B_\text{n}^{2+\delta}}\Sum[k=1][n]E\qty{\abs{X_k-\mu_k}^{2+\delta}}=0
+    \end{Equation}
+    那么$\eta_n$的标准化变量$\eta_n^{*}$
+    \begin{Equation}
+        \eta_n^{*}=\frac{\eta_n-E(\eta_n)}{\sqrt{D(\eta_n)}}
+    \end{Equation}
+    所对应的分布函数$F_n(x)$对于任意的$x$满足
+    \begin{Equation}
+        \Lim[n\to\infty]F_n(x)=\Lim[n\to\infty]P\qty{\eta_n^{*}\leq x}=\Int[-\infty][x]\frac{1}{\sqrt{2\pi}}\frac{1}{\sqrt{2\pi}\e^{-t^2/2}\dd{t}}=\Phi(x)
+    \end{Equation}
+    即$\eta_n$的标准化变量$\eta_n^{*}$在$n\to\infty$时，满足标准正态分布$N(0,1)$
+    \begin{Equation}
+        \Lim[n\to\infty]\eta_n^{*}\sim N(0,1)
+    \end{Equation}
+    该结论称为\uwave{李雅普诺夫定理}（Lyapunov's theorem）。
+\end{BoxTheorem}
+
+\begin{Proof}
+    证明从略。
+\end{Proof}
