@@ -249,3 +249,149 @@ F分布有一个显而易见的性质，即若$F\sim F(n_1,n_2)$，则
         F_{\alpha}(n_1,n_2)=\frac{1}{F_{1-\alpha}(n_1,n_2)}
     \end{Equation}
 \end{BoxProperty}
+
+\subsection{统计量的分布}
+首先，让我们来计算一下样本均值$\xbar{X}$和样本方差$S^2$的数字特征。
+\begin{BoxFormula}[样本均值的期望]
+    样本均值$\xbar{X}$的期望为总体$X$的均值$\mu$
+    \begin{Equation}
+        E(\xbar{X})=\mu
+    \end{Equation}
+\end{BoxFormula}
+
+\begin{Proof}
+    根据\fancyref{def:样本均值}，\xref{ppt:随机变量和的均值}，\xref{ppt:随机变量常数倍的方差}
+    \begin{Equation}
+        E(\xbar{X})=E\qty[\frac{1}{n}\Sum[k=1][n]X_k]=\frac{1}{n}\Sum[k=1][n]E(X_k)
+    \end{Equation}
+    而$X_k$均是与$X$同分布的随机变量，期望均为$\mu$，故
+    \begin{Equation}*
+        E(\xbar{X})=\frac{1}{n}\Sum[k=1][n]\mu=\frac{1}{n}(n\mu)=\mu\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxFormula}[样本均值的方差]
+    样本均值$\xbar{X}$的方差为总体$X$的方差$\sigma^2$除以$n$
+    \begin{Equation}
+        D(\xbar{X})=\sigma^2/n
+    \end{Equation}
+\end{BoxFormula}
+\begin{Proof}
+    根据\fancyref{def:样本均值}，\xref{ppt:随机变量和的方差}，\xref{ppt:随机变量常数倍的方差}，以及$X_k$间的独立性
+    \begin{Equation}
+        D(\xbar{X})=D\qty[\frac{1}{n}\Sum[k=1][n]X_k]=\frac{1}{n^2}\Sum[k=1][n]D(X_k)
+    \end{Equation}
+    而$X_k$均是与$X$同分布的随机变量，方差均为$\sigma^2$，故
+    \begin{Equation}*
+        D(\xbar{X})=\frac{1}{n^2}\Sum[k=1][n]\sigma^2=\frac{1}{n}(n\sigma^2)=\frac{\sigma^2}{n}\qedhere
+    \end{Equation}
+\end{Proof}
+
+这就告诉我们，样本均值的期望就是均值，样本均值的方差则随着$n$的增加而减小，因此在物理实验中要求反复测量取平均值，是有理论依据的，这样可以提高测量结果的准确程度。
+
+\begin{BoxFormula}[样本方差的期望]
+    样本方差$S^2$的期望是总体$X$的方差$\sigma^2$
+    \begin{Equation}
+        E(S^2)=\sigma^2
+    \end{Equation}
+\end{BoxFormula}
+
+\begin{Proof}
+    根据\fancyref{fml:样本方差}，\xref{ppt:随机变量和的均值}，\xref{ppt:随机变量常数倍的方差}
+    \begin{Equation}&[1]
+        \qquad\qquad
+        E(S^2)=E\qty{\frac{1}{n-1}\qty[\Sum[k=1][n](X_k^2)-n\xbar{X}^2]}=\frac{1}{n-1}\qty{\Sum[k=1][n][E(X_k^2)]-nE(\xbar{X}^2)}
+        \qquad\qquad
+    \end{Equation}
+    根据\fancyref{fml:样本均值的期望}和\fancyref{fml:样本均值的方差}
+    \begin{Equation}&[2]
+        E(\xbar{X}^2)=D(\xbar{X})+E(\xbar{X})^2=\sigma^2/n+\mu^2
+    \end{Equation}
+    而$X_k$是与$X$同分布的随机变量，均值为$\mu$，方差为$\sigma^2$
+    \begin{Equation}&[3]
+        E(X_k^2)=D(X_k)+E(X_k)^2=\sigma^2+\mu^2
+    \end{Equation}
+    将\xrefpeq{2}和\xrefpeq{3}代入\xrefpeq{1}
+    \begin{Equation}&[4]
+        E(S^2)=\frac{1}{n-1}\qty{\Sum[k=1][n][\sigma^2+\mu^2]-n\qty[\sigma^2/n+\mu^2]}
+    \end{Equation}
+    化简得
+    \begin{Equation}&[5]
+        \qquad\qquad\qquad
+        E(S^2)=\frac{1}{n-1}\qty{n[\sigma^2+\mu^2]-n[\sigma^2/n+\mu^2]}=\frac{1}{n-1}\qty{(n-1)\sigma^2}
+        \qquad\qquad\qquad
+    \end{Equation}
+    即
+    \begin{Equation}*
+        E(S^2)=\sigma^2\qedhere
+    \end{Equation}
+\end{Proof}
+
+这就告诉我们，样本方差的期望就是方差。这里从\xrefpeq{5}中也可以看出，样本方差定义时若由$1/(n-1)$改为$1/n$，那么其期望将不再是方差（尽管$1/n$看起来才和方差的形式一致）。
+
+随后，让我们计算一下样本均值$\xbar{X}$和样本方差$S^2$的分布（以下假定$X$为正态总体）。
+
+\begin{BoxTheorem}[样本均值的分布]
+    设$X_1,X_2,\cdots,X_n$是来自正态总体的$X\sim N(\mu,\sigma^2)$的样本，则有
+    \begin{Equation}
+        \xbar{X}\sim N(\mu,\sigma^2/n)
+    \end{Equation}
+\end{BoxTheorem}
+\begin{Proof}
+    根据\fancyref{def:样本均值}
+    \begin{Equation}
+        \xbar{X}=\frac{1}{n}\Sum[k=1][n]X_k
+    \end{Equation}
+    由于$X_k\sim N(\mu,\sigma^2)$，因此其线性组合$\xbar{X}$也服从正态分布。
+
+    而前面\fancyref{fml:样本均值的期望}和\fancyref{fml:样本均值的方差}，已经告诉我们
+    \begin{Equation}
+        E(\xbar{X})=\mu\qquad 
+        D(\xbar{X})=\sigma^2/n        
+    \end{Equation}
+    因此
+    \begin{Equation}*
+        \xbar{X}\sim N(\mu,\sigma^2/n)\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxTheorem}[样本方差的分布]
+    设$X_1,X_2,\cdots,X_n$是来自正态总体的$X\sim N(\mu,\sigma^2)$的样本，则有
+    \begin{Equation}
+        \frac{(n-1)S^2}{\sigma^2}\sim \chi^2(n-1)
+    \end{Equation}
+    并且，$S^2$与$\xbar{X}$相互独立。
+\end{BoxTheorem}
+
+\begin{Proof}
+    证明从略。
+\end{Proof}
+
+\begin{BoxTheorem}[枢轴量的分布]
+    设$X_1,X_2,\cdots,X_n$是来自正态总体$X\sim N(\mu,\sigma^2)$的样本，则有
+    \begin{Equation}
+        \frac{\xbar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)
+    \end{Equation}
+    这里左端的式子称为\uwave{枢轴量}（Pivotal Quantity）
+\end{BoxTheorem}
+
+\begin{Proof}
+    根据\fancyref{thm:样本均值的分布}和\fancyref{lem:标准正态分布与正态分布}
+    \begin{Equation}
+        \frac{\xbar{X}-\mu}{\sigma/\sqrt{t}}\sim N(0,1)
+    \end{Equation}
+    根据\fancyref{thm:样本方差的分布}
+    \begin{Equation}
+        \frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)
+    \end{Equation}
+    而我们注意到
+    \begin{Equation}
+        \qty\Bigg[\frac{\xbar{X}-\mu}{\sigma/\sqrt{t}}]\qty\Bigg[\sqrt{\frac{(n-1)S^2}{\sigma^2(n-1)}}~]^{-1}=
+        \qty\Bigg[\frac{\xbar{X}-\mu}{\sigma/\sqrt{t}}]\qty\Bigg[\sqrt{\frac{S^2}{\sigma^2}}~]^{-1}=
+        \qty\Bigg[\frac{\xbar{X}-\mu}{\sigma/\sqrt{t}}]\qty\Bigg[\sqrt{\frac{S^2\vphantom{(n-1)}}{\sigma^2\vphantom{(n-1)}}}~]^{-1}=\frac{\xbar{X}-\mu}{S/\sqrt{t}}
+    \end{Equation}
+    而根据\fancyref{def:学生氏分布}
+    \begin{Equation}*
+        \frac{\xbar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)\qedhere
+    \end{Equation}
+\end{Proof}
