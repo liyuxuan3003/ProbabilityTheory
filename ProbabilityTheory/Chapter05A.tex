@@ -53,6 +53,19 @@
 \end{center}
 这告诉我们，数学期望的实际意义，即重复试验次数足够多时的算数平均值。
 
+我们考虑引入以下定义
+\begin{BoxDefinition}[依概率收敛]
+    设$Y_1,Y_2,\cdots,Y_n,\cdots$是一个随机变量序列，而$a$是一个常数，若对任意正数$\varepsilon$，有
+    \begin{Equation}
+        \Lim[n\to\infty]P\qty{\abs{Y_n-a}<\varepsilon}=1
+    \end{Equation}
+    则称序列$Y_1,Y_2,\cdots,Y_n,\cdots$依概率收敛于$a$，极为
+    \begin{Equation}
+        Y_n\xlarr[$P$]a
+    \end{Equation}
+\end{BoxDefinition}
+辛钦大数定律可以用“依概率收敛”表述为，设随机变量$X_1,X_2,\cdots$相互独立，服从同一分布且具有期望$E(X_k)=\mu$，则序列$\bar{X}_n=(1/n)\Sum[k=1][n]X_k$依概率收敛于$\mu$，即$\bar{X}_n\xlarr[$P$]a$。
+
 \subsection{伯努利大数定律}
 在本小节，我们将介绍伯努利大数定律，它讨论的是随机变量“频率”和“概率”间的关系。
 
