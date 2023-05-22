@@ -1,0 +1,66 @@
+\section{点估计优良性评判标准}
+在\xref{sec:点估计}中我们看到，对于同一个参数，使用不同的估计方法求出的估计量可能是不同沟道，那么这时就有一个疑问，采用哪个估计量会更好些呢？这种优劣不是绝对的，而是基于某一评判标准而言的相对评价。这一节，我们会介绍三种常用的评判标准：无偏性、有效性、相合性。
+
+\subsection{无偏性}
+\begin{BoxDefinition}[无偏性]
+    设$\hat{\theta}$是$\theta$的一个估计量，若对于任意的$\theta\in\Theta$，期望$E(\hat{\theta})$存在且满足
+    \begin{Equation}
+        E(\hat{\theta})=\theta
+    \end{Equation}
+    则称$\hat{\theta}$是$\theta$的\uwave{无偏估计}（Unbiased Estimator），否则称\uwave{有偏估计}（Biased Estimator）。
+\end{BoxDefinition}
+估计量的无偏性是指，由估计量得到的估计值相对于未知参数的真值来说，取某些样本观测值时偏大，取某些样本观测值时偏小，但是反复将这个估计量使用多次，就平均而言，偏差为零。估计若不具有无偏性，那无论使用多少次，其平均值也与真值有一定的距离，这个距离就是\uwave{系统误差}（Systematic Error）了，即由估计方法所决定的，无关测试随机性的固有误差。
+
+根据\fancyref{fml:样本均值的期望}
+\begin{Equation}
+    E(\xbar{X})=\mu
+\end{Equation}
+
+根据\fancyref{fml:样本方差的期望}
+\begin{Equation}
+    E(S^2)=\sigma^2
+\end{Equation}
+
+这表明，样本均值$\xbar{X}$和样本方差$S^2$分别是$\mu$和$\sigma^2$的无偏估计。
+
+那有什么估计量是有偏估计？最佳的实例就是与样本方差$S^2$相似的二阶中心矩$S_n^2$
+\begin{Equation}
+    S^2=\frac{1}{n-1}\Sum[k=1][n](X_k-\xbar{X})^2\qquad
+    S_n^2=\frac{1}{n}\Sum[k=1][n](X_k-\xbar{X})^2
+\end{Equation}
+由于我们已经知道$E(S^2)=\sigma^2$
+\begin{Equation}
+    E(S_n^2)=\frac{n-1}{n}\sigma^2
+\end{Equation}
+因此$S_n^2$并非$\sigma^2$的无偏估计。不过若$n\to\infty$时$E(S_n^2)\to\sigma^2$，这表明$S_n^2$尽管有偏，但还不至于偏到很离谱的程度，随着$n$的增加偏差会逐渐减小，这类估计量称为\uwave{渐进无偏量}。
+
+\subsection{有效性}
+无偏估计并不是唯一的，可以有很多，如何在无偏估计中再进行选择？
+\begin{BoxDefinition}[有效性]
+    设$\hat{\theta_1},\hat{\theta_2}$是$\theta$的两个无偏估计，若对于任意的$\theta\in\Theta$
+    \begin{Equation}
+        D(\hat{\theta_1})\leq D(\hat{\theta_2})
+    \end{Equation}
+    且对于至少某一个$\theta\in\Theta$
+    \begin{Equation}
+        D(\hat{\theta_1})< D(\hat{\theta_2})
+    \end{Equation}
+    则称$\hat{\theta_1}$比$\hat{\theta_2}$更\uwave{有效}。
+\end{BoxDefinition}
+
+\subsection{相合性}
+无偏性之上的要求是有效性，无偏性之下的要求则是相合性。
+\begin{BoxDefinition}
+    设$\hat{\theta}$是$\theta$的一个估计量，若对于任意的$\theta\in\Theta$有
+    \begin{Equation}
+        \forall\varepsilon>0,\quad\Lim[n\to\infty] P\qty{|\hat{\theta}-\theta|<\varepsilon}=1
+    \end{Equation}
+    则称$\hat{\theta}$是$\theta$的\uwave{相合估计}（Consistent Estimater）。
+\end{BoxDefinition}
+我们可以将相合性、无偏性、有效性的关系总结一下
+\begin{itemize}
+    \item 相合性是较低的要求，它要求估计量$\hat{\theta}$依概率收敛至$\theta$。
+    \item 无偏性是较高的要求，它要求估计量$\hat{\theta}$的期望$E(\hat{\theta})$为$\theta$。
+    \item 有效性则是在无偏的前提下，进一步讨论估计量$\hat{\theta}$的方差$D(\hat{\theta})$的大小。
+\end{itemize}
+这里尚有一个遗留的问题：依概率收敛与渐进无偏性之间是什么关系？有待思考。

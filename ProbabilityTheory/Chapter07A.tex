@@ -89,6 +89,39 @@
     这表明矩估计可能不唯一，这是矩估计的一个缺点，通常尽量采用较低阶的矩给出的估计。
 \end{Proof}
 
+\begin{BoxProperty}[均匀分布的矩估计]
+    设总体$X\sim U(a,b)$，其中$a,b$未知，证明$a,b$的点估计量可以表示为
+    \begin{Equation}
+        \hat{a}=A_1-\sqrt{3(A_2-A_1^2)}\qquad
+        \hat{b}=A_1+\sqrt{3(A_2-A_1^2)}
+    \end{Equation}
+\end{BoxProperty}
+\begin{Proof}
+    根据\fancyref{ppt:均匀分布的数值特征}
+    \begin{Gather}[13pt]
+        \mu_1=E(X)=\frac{(b+a)}{2}\xlabelpeq{1}\\
+        \mu_2=E(X^2)=D(X)+E(X)^2=\frac{(b-a)^2}{12}+\frac{(b+a)^2}{4}\xlabelpeq{2}
+    \end{Gather}
+    由\xrefpeq{1}得到
+    \begin{Equation}&[3]
+        b+a=2\mu_1
+    \end{Equation}
+    由\xrefpeq{2}得到（代入\xrefpeq{1}）
+    \begin{Equation}&[4]
+        b-a=2\sqrt{3(\mu_2-\mu_1^2)}
+    \end{Equation}
+    分别解出$a,b$
+    \begin{Equation}
+        a=\mu_1-\sqrt{3(\mu_2-\mu_1^2)}\qquad
+        b=\mu_1+\sqrt{3(\mu_2-\mu_1^2)}
+    \end{Equation}
+    将$\mu_1,\mu_2$替换为$A_1,A_2$
+    \begin{Equation}*
+        \hat{a}=A_1-\sqrt{3(A_2-A_1^2)}\qquad
+        \hat{b}=A_1+\sqrt{3(A_2-A_1^2)}\qedhere
+    \end{Equation}
+\end{Proof}
+
 \begin{BoxProperty}[正态分布的矩估计]
     设总体$X\sim N(\mu,\sigma^2)$
     \begin{enumerate}
@@ -196,11 +229,13 @@
 \begin{Proof}
     根据\fancyref{def:正态分布}
     \begin{Equation}&[1]
-        f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp[-\frac{(x-\mu)^2}{2\sigma^2}]
+        f(x;\mu,\sigma^2)=\frac{1}{\sqrt{2\pi}\sigma}\exp[-\frac{(x-\mu)^2}{2\sigma^2}]
     \end{Equation}
     根据\fancyref{def:极大似然估计法}，似然函数$L(\mu,\sigma^2)$即将$x=x_k$的N个$f(x)$乘起来
     \begin{Equation}&[2]
-        L(\mu,\sigma^2)=\Prod[k=1][n]f(x_k)=\frac{1}{(\sqrt{2\pi}\sigma)^2}\exp[-\frac{1}{2\sigma^2}\Sum[k=1][n](x_k-\mu)^2]
+        \qquad\qquad\qquad
+        L(\mu,\sigma^2)=\Prod[k=1][n]f(x_k;\mu,\sigma^2)=\frac{1}{(\sqrt{2\pi}\sigma)^2}\exp[-\frac{1}{2\sigma^2}\Sum[k=1][n](x_k-\mu)^2]
+        \qquad\qquad\qquad
     \end{Equation}
     或
     \begin{Equation}&[3]
@@ -238,4 +273,40 @@
         \hat{\sigma^2}=\frac{1}{n}\Sum[k=1][n](X_k-\xbar{X})^2=S_n^2\qedhere
     \end{Equation}
 \end{Proof}
-该例表表明，正态分布参量的极大似然估计量与矩估计量相同。
+该例表明，正态分布参量的极大似然估计量与矩估计量相同。但对于其他的分布则未必。
+
+\begin{BoxProperty}[均匀分布的极大似然估计]
+    设总体$X\sim U(a,b)$，若$a,b$均未知，则两者的极大似然估计为
+    \begin{Equation}
+        \hat{a}=\min X_k\qquad
+        \hat{b}=\max X_k
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{def:均匀分布}
+    \begin{Equation}
+        f(x;a,b)=\begin{cases}
+            \mal{\frac{1}{b-a}},&a\leq x\leq b\\[3mm]
+            0,&\text{otherwise}
+        \end{cases}
+    \end{Equation}
+    这里的似然函数其实特别简单，只有当$x_1,x_2,\cdots,x_n$均落在$a,b$之间时似然函数$L(a,b)$才有非零值$1/(b-a)^n$，否则$L(a,b)=0$。因此就有（有点怪？别忘了$L(a,b)$是$a,b$的函数！）
+    \begin{Equation}
+        L(a,b)=\begin{cases}
+            \mal{\frac{1}{b-a}},&a\leq \min x_k,~ \max x_k\leq b\\[3mm]
+            0,&\text{otherwise}
+        \end{cases}
+    \end{Equation}
+    很明显，只有当$a=\min x_k$与$b=\max x_k$时，$L(a,b)$才能取得最大值
+    \begin{Equation}
+        a=\min x_k\qquad b=\max x_k
+    \end{Equation}
+    将$x_k$替换为$X_k$
+    \begin{Equation}*
+        \hat{a}=\min X_k\qquad
+        \hat{b}=\max X_k\qedhere
+    \end{Equation}
+\end{Proof}
+
+\fancyref{ppt:均匀分布的极大似然估计}的结论其实很直观，若已知某个随机变量服从均匀分布，现取得了一些样本，我们会将下限$a$和上限$b$分别估计为样本中的最小值和最大值。而通过与\fancyref{ppt:均匀分布的矩估计}的对比可以看出，矩估计和极大似然估计对均匀分布的$a,b$给出的点估计是不同的，这并不值得奇怪，不同的估计方法给出不同的结果，很合理。
