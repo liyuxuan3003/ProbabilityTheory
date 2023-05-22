@@ -1,0 +1,241 @@
+\section{点估计}
+设总体$X$的分布形式已知，但它的一个或多个参数未知。借助于总体$X$的一个样本赖估计总体未知参数的问题，称为\uwave{点估计问题}（Point Estimation）。点估计问题的一般提法如下。
+\begin{BoxDefinition}[点估计]
+    设总体$X\sim f(x;\theta)$，其中$f$的形式已知，而$\theta$是未知参数，称为\uwave{总体参数}。
+
+    总体参数$\theta$未知，但它的取值范围通常是已知的。
+    
+    总体参数$\theta$的取值范围为\uwave{参数空间}，记作$\Theta$
+    \begin{Equation}
+        \theta\in\Theta
+    \end{Equation}
+    设$(X_1,X_2,\cdots,X_n)$是取自总体$X$的一个样本，若用一个统计量$\hat{\theta}$来估计$\theta$
+    \begin{Equation}
+        \hat{\theta}=\hat{\theta}(X_1,X_2,\cdots,X_n)
+    \end{Equation}
+    则称统计量$\hat{\theta}$是参数$\theta$的一个\uwave{点估计量}。
+\end{BoxDefinition}
+
+简单来说，点估计问题就是要为总体的分布参数$\theta$找到一个统计量$\hat{\theta}(X_1,X_2,\cdots,X_n)$进行估计，例如\xref{subsec:统计量的定义}中的$\xbar{X}=(1/n)\Sum[k=1][n]X_k$和$S^2=(1/n-1)\Sum[k=1][n](X_k-\xbar{X})^2$就是对总体的期望$\mu$和方差$\sigma^2$的点估计量，而且是一个不错的点估计量，当然，我们也可以胡乱定义一些关于$X_1,X_2,\cdots,X_n$的函数$L=\Sum[k=1][n]X_k^{42.1234}$作为$\mu$或$\sigma$的点估计量，这当然符合点估计量的定义，但后面我们引入对点估计的评价后就会看到，这显然是一个极糟的点估计量。
+
+值得说明的是，若$\hat{\theta}$为$\theta$的估计量，则$g(\hat{\theta})$也是$g(\theta)$的估计量。
+
+接下来，我们介绍两种系统的构造点估计量的手段：矩估计法和极大似然估计法。
+
+\subsection{矩估计法}
+矩估计法的核心就是替换思想：用样本原点矩$A_r$替换总体原点矩$\mu_r$。\footnote{关于$\mu_r$和$A_r$的定义，参见\fancyref{def:原点矩}和\fancyref{def:样本原点矩}。}当然，并非所有的参数$\theta$都恰好是总体原点矩$\mu_1,\mu_2,\cdots,\mu_m$中的某一个，但很多参数都可以可以表示为总体原点矩的函数，即$\theta=\phi(\mu_1,\mu_2,\cdots,\mu_m)$，矩估计法即用$\hat{\theta}=\phi(A_1,A_2,\cdots,A_m)$作为点估计量。
+
+\begin{BoxDefinition}[矩估计法]
+    设总体$X$的$r$阶原点矩为
+    \begin{Equation}
+        \mu_r=E(X^r)\qquad r=1,2,\cdots,m,\cdots
+    \end{Equation}
+    设总体$X$的样本$X_1,X_2,\cdots,X_n$的$r$阶样本原点矩为
+    \begin{Equation}
+        A_r=\frac{1}{n}\Sum[k=1][n]X_k^r\qquad r=1,2,\cdots,m,\cdots
+    \end{Equation}
+    若未知参数$\theta$可以表示为原点矩$\mu_1,\mu_2,\cdots,\mu_m$的函数
+    \begin{Equation}
+        \theta=\phi(\mu_1,\mu_2,\cdots,\mu_m)
+    \end{Equation}
+    则未知参数$\theta$的\uwave{矩估计量}为
+    \begin{Equation}
+        \hat{\theta}=\phi(A_1,A_2,\cdots,A_m)
+    \end{Equation}
+    这种点估计方法称为\uwave{矩估计法}（Method of Moments）。
+\end{BoxDefinition}
+
+接下来，我们来看一些具体的矩估计的例子。
+
+\begin{BoxProperty}[二项分布的矩估计]
+    设总体$X\sim B(1,p)$，其中$p$未知，证明$p$的点估计量为
+    \begin{Equation}
+        \hat{p}=A_1
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{ppt:二项分布的数值特征}，对于二项分布$n=1$的特例0--1分布
+    \begin{Equation}
+        p=E(X)=\mu_1
+    \end{Equation}
+    根据\fancyref{def:矩估计法}，将总体原点矩$\mu_1$替换为样本原点矩$A_1$
+    \begin{Equation}*
+        \hat{p}=A_1\qedhere
+    \end{Equation}
+\end{Proof}
+
+\begin{BoxProperty}[泊松分布的矩估计]
+    设总体$X\sim P(\lambda)$，其中$\lambda$未知，证明$\lambda$的点估计量可以表示为
+    \begin{Equation}
+        \hat{\lambda}=A_1\qquad
+        \hat{\lambda}=A_2-A_1^2
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{ppt:泊松分布的数值特征}，对于泊松分布
+    \begin{Equation}
+        \lambda=E(X)\qquad \lambda=D(X)=E(X^2)-E(X)^2
+    \end{Equation}
+    从期望出发，根据\fancyref{def:矩估计法}
+    \begin{Equation}
+        \hat{\lambda}=A_1
+    \end{Equation}
+    从方差出发，根据\fancyref{def:矩估计法}和\fancyref{fml:方差}
+    \begin{Equation}
+        \hat{\lambda}=A_2-A_1^2
+    \end{Equation}
+    这表明矩估计可能不唯一，这是矩估计的一个缺点，通常尽量采用较低阶的矩给出的估计。
+\end{Proof}
+
+\begin{BoxProperty}[正态分布的矩估计]
+    设总体$X\sim N(\mu,\sigma^2)$
+    \begin{enumerate}
+        \item 参数$\mu$的矩估计可以表示为
+        \begin{Equation}
+            \hat{\mu}=A_1
+        \end{Equation}
+        \item 若$\mu$已知，则参数$\sigma^2$的矩估计可以表示为
+        \begin{Equation}
+            \hat{\sigma^2}=A_2-\mu^2
+        \end{Equation}
+        \item 若$\mu$未知，则参数$\sigma^2$的矩估计可以表示为
+        \begin{Equation}
+            \hat{\sigma^2}=A_2-A_1^2
+        \end{Equation}
+    \end{enumerate}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{ppt:正态分布的数值特征}，对于正态分布
+    \begin{Equation}
+        \mu=E(X)\qquad
+        \sigma^2=D(X)=E(X^2)-E(X)^2
+    \end{Equation}
+    因此
+    \begin{Equation}
+        \hat{\mu}=A_1
+    \end{Equation}
+    若$\mu$已知，这里$E(X)$是已知的常数$\mu$，故
+    \begin{Equation}
+        \hat{\sigma^2}=A_2-\mu^2
+    \end{Equation}
+    若$\mu$未知，这里$E(X)$也要转换为$A_1$
+    \begin{Equation}
+        \hat{\sigma^2}=A_2-A_1^2
+    \end{Equation}
+    这表明，当分布具有多个参数时，一个参数是否已知会对另一参数的矩估计产生影响。
+\end{Proof}
+
+\fancyref{ppt:正态分布的矩估计}不仅适用于正态分布，也适用于一般分布\footnote{因为其证明中没有使用任何正态分布的特性，完全是基于均值和方差的定义。}，由于$A_1=\xbar{X}$为样本均值，而$A_2-A_1^2=B_2$为二阶中心矩，也常记为$S_n^2$，因此当$\mu$和$\sigma^2$均未知时
+\begin{itemize}
+    \item 一阶原点矩$A_1=\xbar{X}$是期望$\mu$的矩估计量。
+    \item 二阶中心矩$B_2=S_n^2$是方差$\sigma^2$的矩估计量。
+\end{itemize}
+矩估计法是一种很经典的估计方法，比较直观，计算简单，即便不知道总体分布类型，只需要知道未知参数和总体各阶原点矩的关系就能使用该方法，实际问题中，矩估计应用很广泛。
+
+\subsection{极大似然估计法}
+极大似然估计法是求总体未知参数的另一种常用的点估计方法，先通过两个 示例来感受一下。
+\begin{BoxExample}[极大似然估计法]
+    设箱子中装有黑白两种颜色的球，一种颜色的有99各，一种颜色的1个，但不知道到底是哪种颜色是99个和1个。现从箱子中放回地抽取2个球，结果均是白色。
+
+    现在问，哪种颜色的球有99个？哪种颜色的球有1个？
+\end{BoxExample}
+
+\begin{Solution}
+    以最朴素的思想，我们会立即断言，既然抽了两个都是白球，那白球一定是多的那个。
+
+    其实，这就是极大似然估计法的基本原理了。下面以数学的语言表述一下。
+
+    设白球比例为$p$，根据条件，此处$p$只有$p=0.01$和$p=0.99$两种取值，但是
+    \begin{itemize}
+        \item 若$p=0.01$，则取得两个球都是白球的概率为$p^2=0.01^2$。
+        \item 若$p=0.99$，则取得两个球都是白球的概率为$p^2=0.99^2$。
+    \end{itemize}
+    极大似然估计法的思想是，既然一件事已经发生了，那么我们就推定相关参数的取值一定会使得该事件发生的概率最大。很明显，这里取$p=0.99$将会使取到两个白球的概率最大。
+
+    因此，极大似然估计法对这里的参数$p$给出的点估计即$\hat{p}=0.99$。
+\end{Solution}
+
+而一般来说，使得样本发生概率最大的概率$L$是一个关于未知参量$\theta$的连续函数$L(\theta)$，所以说，极大似然估计法所给出的点估计值$\hat{\theta}$，其实就是使得函数$L(\theta)$取极大值的那一$\theta$值。
+
+\begin{BoxDefinition}[极大似然估计法]
+    设总体$X$有分布律$p(x;\theta)$或密度函数$f(x;\theta)$，定义\uwave{似然函数}（Likelihood Function）
+    \begin{Equation}
+        L(\theta)=\Prod[k=1][n]p(X_k=x_k;\theta)\qquad
+        L(\theta)=\Prod[k=1][n]f(x_k;\theta)
+    \end{Equation}
+    并称满足以下关系式
+    \begin{Equation}
+        L(\hat{\theta})=\max_{\theta\in\Theta} L(\theta)
+    \end{Equation}
+    的解$\hat{\theta}$为参量$\theta$的\uwave{极大似然估计量}。
+
+    这种点估计方法称为\uwave{极大似然估计法}（Maximum Likelihood Estimation, MLE）。
+\end{BoxDefinition}
+
+当$L(\theta)$是可微函数时，求导是球极大似然估计最常用的方法，又因为$L(\theta)$和$\ln L(\theta)$z总是在同一个$\theta$处取到极值，且对数似然函数$\ln L(\theta)$的求导更简单，故常采用对数似然方程。
+\begin{BoxEquation}[对数似然方程]
+    当$L(\theta)$可微时，极大似然估计量$\hat{\theta}$常由\uwave{对数似然方程}求得
+    \begin{Equation}
+        \dv{\theta}\ln L(\theta)=0
+    \end{Equation}
+\end{BoxEquation}
+
+现在让我们用极大似然估计法研究一下正态分布。
+
+\begin{BoxProperty}[正态分布的极大似然估计]
+    设总体$X\sim N(\mu,\sigma^2)$，若$\mu,\sigma^2$均未知，则两者的极大似然估计为
+    \begin{Equation}
+        \hat{\mu}=\xbar{X}\qquad
+        \hat{\sigma^2}=S_n^2
+    \end{Equation}
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{def:正态分布}
+    \begin{Equation}&[1]
+        f(x)=\frac{1}{\sqrt{2\pi}\sigma}\exp[-\frac{(x-\mu)^2}{2\sigma^2}]
+    \end{Equation}
+    根据\fancyref{def:极大似然估计法}，似然函数$L(\mu,\sigma^2)$即将$x=x_k$的N个$f(x)$乘起来
+    \begin{Equation}&[2]
+        L(\mu,\sigma^2)=\Prod[k=1][n]f(x_k)=\frac{1}{(\sqrt{2\pi}\sigma)^2}\exp[-\frac{1}{2\sigma^2}\Sum[k=1][n](x_k-\mu)^2]
+    \end{Equation}
+    或
+    \begin{Equation}&[3]
+        L(\mu,\sigma^2)=(2\pi)^{-n/2}(\sigma^2)^{-n/2}\exp[-\frac{1}{2\sigma^2}\Sum[k=1][n](x_k-\mu)^2]
+    \end{Equation}
+    在\xrefpeq{2}两端取对数（提醒下，$\ln\e^x=x$，$\ln a^x=x\ln a$）
+    \begin{Equation}&[4]
+        \ln L(\mu,\sigma^2)=-\frac{n}{2}\ln(2\pi)-\frac{n}{2}\ln(\sigma^2)-\frac{1}{2\sigma^2}\Sum[k=1][n](x_k-\mu)^2
+    \end{Equation}
+    这里$L(\mu,\sigma^2)$是二元函数，故需要求偏导。
+
+    将$\ln L$对$\mu$求偏导
+    \begin{Equation}&[5]
+        \pdv{\mu}\ln L=-\frac{1}{2\sigma^2}\Sum[k=1][n]\pdv{\mu}\qty(x_k^2-2\mu x_k+\mu^2)=-\frac{1}{2\sigma^2}\Sum[k=1][n](-2x_k+2\mu)
+    \end{Equation}
+    即得
+    \begin{Equation}&[6]
+        \pdv{\mu}\ln L=\frac{1}{\sigma^2}\qty[\Sum[k=1][n](x_k)-n\mu]=0
+    \end{Equation}
+    将$\ln L$对$\sigma^2$求偏导
+    \begin{Equation}&[7]
+        \pdv{(\sigma^2)}\ln L=-\frac{n}{2\sigma^2}+\frac{1}{2(\sigma^2)^2}\Sum[k=1][n](x_k-\mu)^2=0
+    \end{Equation}
+    由\xrefpeq{6}解得
+    \begin{Equation}&[8]
+        \mu=\frac{1}{n}\Sum[k=1][n]x_k=\bar{x}
+    \end{Equation}
+    由\xrefpeq{7}解得（代入\xrefpeq{8}）
+    \begin{Equation}&[9]
+        \sigma^2=\frac{1}{n}\Sum[k=1][n](x_k-\bar{x})^2
+    \end{Equation}
+    将\xrefpeq{8}和\xrefpeq{9}中的$\bar{x}$和$x_k$替换为$\xbar{X}$和$X_k$
+    \begin{Equation}*
+        \hat{\mu}=\xbar{X}\qquad
+        \hat{\sigma^2}=\frac{1}{n}\Sum[k=1][n](X_k-\xbar{X})^2=S_n^2\qedhere
+    \end{Equation}
+\end{Proof}
+该例表表明，正态分布参量的极大似然估计量与矩估计量相同。
