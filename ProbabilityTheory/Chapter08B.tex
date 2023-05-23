@@ -1,0 +1,136 @@
+\section{正态总体的假设检验}
+
+在本节，我们具体来讨论正态总体的假设检验问题。
+
+\subsection{均值的假设检验}
+\begin{BoxProperty}[均值在方差已知时的假设检验]*
+    研究正态分布$\mu$的假设检验，当$\sigma^2$已知时，所使用的统计量为
+    \begin{Equation}
+        Z=\frac{\xbar{X}-\mu_0}{\sigma/\sqrt{n}}
+    \end{Equation}
+    双边检验$H_0:\mu=\mu_0\leftrightarrow H_1:\mu\neq\mu_0$的拒绝域$W$为
+    \begin{Equation}
+        \abs{Z}\geq z_{\alpha/2}
+    \end{Equation}
+    左边检验$H_0:\mu\geq\mu_0\leftrightarrow H_1:\mu<\mu_0$和右边检验$H_0:\mu\leq\mu_0\leftrightarrow H_1:\mu>\mu_0$的$W$
+    \begin{Equation}
+        Z\leq -z_{\alpha}\qquad
+        Z\geq z_{\alpha}
+    \end{Equation}
+    以上$\alpha$为显著性水平。
+\end{BoxProperty}
+\begin{Proof}
+    以双边检验为例证明
+    \begin{Equation}
+        H_0: \mu=\mu_0\leftrightarrow H_1:\mu\neq\mu_0
+    \end{Equation}
+    当$H_0$成立时，有$\mu=\mu_0$成立，设检验统计量（类似于\xref{sec:正态总体的区间估计}中的枢纽量）
+    \begin{Equation}
+        Z=\frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}=\frac{\xbar{X}-\mu_0}{\sigma/\sqrt{n}}\sim N(0,1)
+    \end{Equation}
+    而$Z$作为服从$N(0,1)$的随机变量，不应过分偏离原点，否则应拒绝$H_0$，故拒绝域为
+    \begin{Equation}
+        W=\qty{\abs{Z}\geq k}
+    \end{Equation}
+    而对于给定的显著性水平
+    \begin{Equation}
+        P\qty{\abs{Z}\geq k\mid\text{$H_0$成立}}=\alpha
+    \end{Equation}
+    运用上分位数的概念，这可以求得$k=z_{\alpha/2}$，故
+    \begin{Equation}
+        W=\qty{\abs{Z}\geq z_{\alpha/2}}
+    \end{Equation}
+    类似的也可以证明左边检验和右边检验的情况。
+\end{Proof}
+
+由此可见，假设检验的过程和结论都与置信区间的求解有一些相似，可以一起记忆。
+
+\begin{BoxProperty}[均值在方差未知时的假设检验]*
+    研究正态分布$\mu$的假设检验，当$\sigma^2$未知时，所使用的统计量为
+    \begin{Equation}
+        T=\frac{\xbar{X}-\mu_0}{S/\sqrt{n}}
+    \end{Equation}
+    双边检验$H_0:\mu=\mu_0\leftrightarrow H_1:\mu\neq\mu_0$的拒绝域$W$为
+    \begin{Equation}
+        \abs{T}\geq t_{\alpha/2}(n-1)
+    \end{Equation}
+    左边检验$H_0:\mu\geq\mu_0\leftrightarrow H_1:\mu<\mu_0$和右边检验$H_0:\mu\leq\mu_0\leftrightarrow H_1:\mu>\mu_0$的$W$
+    \begin{Equation}
+        T\leq -t_{\alpha}(n-1)\qquad
+        T\geq t_{\alpha}(n-1)
+    \end{Equation}
+    以上$\alpha$为显著性水平。
+\end{BoxProperty}
+
+\begin{Proof}
+    以双边检验为例证明
+    \begin{Equation}
+        H_0: \mu=\mu_0\leftrightarrow H_1:\mu\neq\mu_0
+    \end{Equation}
+    当$H_0$成立时，有$\mu=\mu_0$成立，设检验统计量（类似于\xref{sec:正态总体的区间估计}中的枢纽量）
+    \begin{Equation}
+        T=\frac{\xbar{X}-\mu}{S/\sqrt{n}}=\frac{\xbar{X}-\mu_0}{S/\sqrt{n}}\sim t(n-1)
+    \end{Equation}
+    而$T$作为服从$t(n-1)$的随机变量，不应过分偏离原点，否则应拒绝$H_0$，故拒绝域为
+    \begin{Equation}
+        W=\qty{\abs{T}\geq k}
+    \end{Equation}
+    而对于给定的显著性水平
+    \begin{Equation}
+        P\qty{\abs{T}\geq k\mid\text{$H_0$成立}}=\alpha
+    \end{Equation}
+    运用上分位数的概念，这可以求得$k=t_{\alpha/2}(n-1)$，故
+    \begin{Equation}
+        W=\qty{\abs{T}\geq t_{\alpha/2}(n-1)}
+    \end{Equation}
+    类似的也可以证明左边检验和右边检验的情况。
+\end{Proof}
+
+\subsection{方差的假设检验}
+这里假设检验与先前置信区间一样，讨论方差时仅研究均值未知的情况。
+
+\begin{BoxProperty}[方差在均值未知时的假设检验]*
+    研究正态分布$\sigma^2$的假设检验，当$\mu$未知时，所使用的统计量为
+    \begin{Equation}
+        \chi^2=\frac{(n-1)S^2}{\sigma_0^2}
+    \end{Equation}
+    双边检验$H_0:\sigma^2=\sigma^2_0\leftrightarrow H_1:\sigma^2\neq\sigma^2_0$的拒绝域$W$为
+    \begin{Equation}
+        \chi^2\leq \chi_{1-\alpha/2}(n-1)~\cup~\chi^2\geq\chi^2_{\alpha/2}(n-1)
+    \end{Equation}
+    左边检验$H_0:\sigma^2\geq\sigma_0^2\leftrightarrow H_1:\sigma^2<\sigma_0^2$和右边检验$H_0:\sigma^2\leq\sigma_0^2\leftrightarrow H_1:\sigma^2>\sigma_0^2$的$W$
+    \begin{Equation}
+        \chi^2\leq \chi_{1-\alpha}(n-1)\qquad\chi^2\geq\chi^2_{\alpha}(n-1)
+    \end{Equation}
+    以上$\alpha$为显著性水平。
+\end{BoxProperty}
+
+\begin{Proof}
+    以双边检验为例证明
+    \begin{Equation}
+        H_0:\sigma^2=\sigma^2_0\leftrightarrow H_1:\sigma^2\neq\sigma^2_0
+    \end{Equation}
+    当$H_0$成立时，有$\sigma^2=\sigma^2_0$成立，设检验统计量（类似于\xref{sec:正态总体的区间估计}中的枢纽量）
+    \begin{Equation}
+        \chi^2=\frac{(n-1)S^2}{\sigma^2}=\frac{(n-1)S^2}{\sigma_0^2}\sim \chi^2(n-1)
+    \end{Equation}
+    而$\chi^2$作为服从$\chi^2(n-1)$的随机变量，由于卡方分布不堆成，故拒绝域为
+    \begin{Equation}
+        W=\qty{\chi^2\leq k_1~\cup~\chi^2\geq k_2}
+    \end{Equation}
+    而对于给定的显著性水平
+    \begin{Equation}
+        P\qty{\chi^2\leq k_1~\cup~\chi^2\geq k_2\mid\text{$H_0$成立}}=\alpha
+    \end{Equation}
+    为了计算方便，习惯上取
+    \begin{Equation}
+        P\qty{\chi^2\leq k_1\mid\text{$H_0$成立}}=\frac{\alpha}{2}
+        \qquad
+        P\qty{\chi^2\geq k_2\mid\text{$H_0$成立}}=\frac{\alpha}{2}
+    \end{Equation}
+    运用上分位数的概念，这可以求得$k_1=\chi^2_{1-\alpha/2}(n-1)$和$k_2=\chi^2_{\alpha/2}(n-1)$，故
+    \begin{Equation}
+        W=\qty{\chi^2\leq \chi_{1-\alpha/2}(n-1)~\cup~\chi^2\geq\chi^2_{\alpha/2}(n-1)}
+    \end{Equation}
+    类似的也可以证明左边检验和右边检验的情况。
+\end{Proof}
