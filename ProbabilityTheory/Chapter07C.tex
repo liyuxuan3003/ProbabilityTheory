@@ -1,2 +1,45 @@
 \section{区间估计}
-参数的点估计是用样本观测值测算出一个值去估计未知参数。但有时候，我们希望在给出估计值时能一并给出一个估计区间，这样的估计更有实用价值，因为我们把可能出现的偏差也考虑在内了。
+参数的点估计是用样本观测值测算出一个值去估计未知参数。但有时候，我们希望在给出估计值时一并给出一个估计区间，这样的估计更有价值，因为将可能出现的偏差也考虑在内了。
+
+\begin{BoxDefinition}[双侧置信区间]
+    设$X_1,X_2,\cdots,X_n$是取自总体$X$的一个样本，总体$X$中存在参量$\theta\in\Theta$未知。
+
+    那么，对于$\forall 0<\alpha<1$，若统计量$\bbar{\theta}=\bbar{\theta}(X_1,X_2,\cdots,X_n)$和$\bar{\theta}=\bar{\theta}(X_1,X_2,\cdots,X_n)$，使
+    \begin{Equation}
+        P\qty{\bbar{\theta}\leq\theta\leq\bar{\theta}}=1-\alpha\qquad \theta\in\Theta
+    \end{Equation}
+    则称$[\bbar{\theta},\bar{\theta}]$为$\theta$的\uwave{置信区间}（Confidence Interval），而$1-\alpha$称为\uwave{置信度}（Confidence Level），同时，$\bbar{\theta},\bar{\theta}$则分别称为$\theta$的双侧$1-\alpha$置信区间的\uwave{置信下限}和\uwave{置信上限}。
+\end{BoxDefinition}
+置信度为$1-\alpha$的置信区间反映的是样本落在哪一区间的概率是$1-\alpha$。值得注意的是，置信区间的下限和上限本身也是一个统计量，换言之，样本的观测值不同，置信区间也会变化。
+
+在实际问题中，有时只对未知参数$\theta$的上限或下限感兴趣，例如对于元件的寿命，我们并不会关心说它的寿命是在哪一范围内，我们总希望寿命越长越好。由此可以引出单侧置信区间。
+
+\begin{BoxDefinition}[单侧置信区间]
+    若有统计量$\bar{\theta}=\bar{\theta}(X_1,X_2,\cdots,X_n)$，使得
+    \begin{Equation}
+        P\qty{\theta\leq\bar{\theta}}=1-\alpha\qquad \theta\in\Theta
+    \end{Equation}
+    则称$(-\infty,\bar{\theta}]$为$\theta$的单侧$1-\alpha$置信区间，$\bar{\theta}$称为其置信上限。
+
+    若有统计量$\bbar{\theta}=\bbar{\theta}(X_1,X_2,\cdots,X_n)$，使得
+    \begin{Equation}
+        P\qty{\theta\geq\bbar{\theta}}=1-\alpha\qquad\theta\in\Theta
+    \end{Equation}
+    则称$[\bbar{\theta},+\infty)$为$\theta$的单侧$1-\alpha$置信区间，$\bbar{\theta}$称为其置信下限。
+\end{BoxDefinition}
+
+现在的问题是，未知参数$\theta$的置信区间该如何求呢，这可以概括为以下四步
+\begin{enumerate}
+    \item 求出$\theta$的一个点估计$\hat{\theta}=\hat{\theta}(X_1,X_2,\cdots,X_n)$，
+    \item 构造$\theta$和$\hat{\theta}$的一个函数$W$，其中除了$\theta$不再含有其他未知参数，且$W$的分布已知
+    \begin{Equation}
+        W=W(\hat{\theta},\theta)
+    \end{Equation}
+    \item 确定$a<b$，使得
+    \begin{Equation}
+        P\qty{a\leq W(\hat{\theta},\theta)\leq b}=1-\alpha
+    \end{Equation}
+    \item 将$a\leq W(\hat{\theta},\theta)\leq b$等价变形为$\bbar{\theta}\leq\theta\leq\bar{\theta}$。
+\end{enumerate}
+这里构造的$W=W(\hat{\theta},\theta)$也被称为\uwave{枢轴变量}（Pivotal Quantity）或\uwave{主元}。
+
