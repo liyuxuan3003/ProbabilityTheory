@@ -1,0 +1,117 @@
+\section{正态总体的区间估计}
+本节将应用\xref{sec:区间估计}中的方法，就正态总体的均值$\mu$与方差$\sigma^2$作区间估计。
+
+\subsection{均值的置信区间}
+\begin{BoxProperty}[均值在方差已知时的置信区间]
+    对于正态分布，当$\sigma^2$已知时，均值$\mu$的双侧$1-\alpha$置信区间为
+    \begin{Equation}
+        \qty\Bigg[\xbar{X}\pm\frac{\sigma}{\sqrt{n}}z_{\alpha/2}]
+    \end{Equation}
+    其两个单侧$1-\alpha$置信区间为\footnote[2]{提示：$z_{\alpha}<z_{\alpha/2}$。}
+    \begin{Equation}
+        \Biggl(-\infty~,~\xbar{X}+\frac{\sigma}{\sqrt{n}}z_\alpha\Biggr]\qquad
+        \Biggl[\xbar{X}-\frac{\sigma}{\sqrt{n}}z_\alpha~,~+\infty\Biggr)        
+    \end{Equation}
+    其中$z_{\alpha}$是标准正态分布$N(0,1)$的上$\alpha$分位数。
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{fml:样本均值的期望}，即选取$\xbar{X}$作为均值$\mu$的无偏估计量
+    \begin{Equation}
+        E(\xbar{X})=\mu
+    \end{Equation}
+    根据\fancyref{thm:样本均值在已知方差时的分布}，选取枢轴量$W$为
+    \begin{Equation}
+        W=\frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)
+    \end{Equation}
+    设$a,b$使得
+    \begin{Equation}
+        P\qty{a\leq\frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\leq b}=1-\alpha
+    \end{Equation}
+    这里$a,b$的解并不唯一，但习惯上我们希望$a,b$是对称区间。由于要求$W$分布在$[a,b]$中的概率是$1-\alpha$，故$W$分布在$a$左侧和$b$右侧的概率分别为$\alpha/2$，这即上$\alpha/2$分位数的定义
+    \begin{Equation}
+        P\qty{-z_{\alpha/2}\leq\frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\leq z_{\alpha/2}}=1-\alpha
+    \end{Equation}
+    由此即解得双侧$1-\alpha$的置信区间为
+    \begin{Equation}
+        \qty\Bigg[\xbar{X}-\frac{\sigma}{\sqrt{n}}z_{\alpha/2}~,~\xbar{X}+\frac{\sigma}{\sqrt{n}}z_{\alpha/2}]
+    \end{Equation}
+    类似的也可以讨论单侧置信区间的情况。
+\end{Proof}
+
+\begin{BoxProperty}[均值在方差未知时的置信区间]
+    对于正态分布，当$\sigma^2$未知时，均值$\mu$的双侧$1-\alpha$置信区间为
+    \begin{Equation}
+        \qty\Bigg[\xbar{X}\pm\frac{\sigma}{\sqrt{n}}t_{\alpha/2}(n-1)]
+    \end{Equation}
+    其两个单侧$1-\alpha$置信区间为
+    \begin{Equation}
+        \Biggl(-\infty~,~\xbar{X}+\frac{\sigma}{\sqrt{n}}t_\alpha(n-1)\Biggr]\qquad
+        \Biggl[\xbar{X}-\frac{\sigma}{\sqrt{n}}t_\alpha(n-1)~,~+\infty\Biggr)        
+    \end{Equation}
+    其中$t_\alpha(n-1)$是$n-1$自由度的学生氏分布$t(n-1)$的上$\alpha$分位数。
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{fml:样本均值的期望}，即选取$\xbar{X}$作为均值$\mu$的无偏估计量
+    \begin{Equation}
+        E(\xbar{X})=\mu
+    \end{Equation}
+    根据\fancyref{thm:样本均值在未知方差时的分布}，选取枢轴量$W$为
+    \begin{Equation}
+        W=\frac{\xbar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)
+    \end{Equation}
+    设$a,b$使得
+    \begin{Equation}
+        P\qty{a\leq\frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\leq b}=1-\alpha
+    \end{Equation}
+    完全类似的
+    \begin{Equation}
+        P\qty{-t_{\alpha/2}(n-1)\leq\frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\leq t_{\alpha/2}(n-1)}=1-\alpha
+    \end{Equation}
+    由此即解得双侧$1-\alpha$的置信区间为
+    \begin{Equation}
+        \qty\Bigg[\xbar{X}-\frac{\sigma}{\sqrt{n}}t_{\alpha/2}(n-1)~,~\xbar{X}+\frac{\sigma}{\sqrt{n}}t_{\alpha/2}(n-1)]
+    \end{Equation}
+    类似的也可以讨论单侧置信区间的情况。
+\end{Proof}
+
+\subsection{方差的置信区间}
+实际中，方差$\sigma^2$未知时通过均值$\mu$也是未知的，因此我们仅讨论这一种情况。
+
+\begin{BoxProperty}[方差在均值未知时的执行区间]
+    对于正态分布，当$\mu$未知时，方差$\sigma^2$的双侧$1-\alpha$置信区间为
+    \begin{Equation}
+        \qty\Bigg[\frac{(n-1)S^2}{\chi_{\alpha/2}^2(n-1)}~,~\frac{(n-1)S^2}{\chi_{1-\alpha/2}^2(n-1)}]
+    \end{Equation}
+    其两个单侧$1-\alpha$置信区间为
+    \begin{Equation}
+        \Biggl(-\infty~,~\frac{(n-1)S^2}{\chi_{1-\alpha}^2(n-1)}\Biggr]\qquad
+        \Biggl[\frac{(n-1)S^2}{\chi_{\alpha}^2(n-1)}~,~+\infty\Biggr)        
+    \end{Equation}
+    其中$t_\alpha(n-1)$是$n-1$自由度的学生氏分布$t(n-1)$的上$\alpha$分位数。
+\end{BoxProperty}
+
+\begin{Proof}
+    根据\fancyref{fml:样本方差的期望}，即选取$S^2$作为方差$\sigma^2$的无偏估计量
+    \begin{Equation}
+        E(S^2)=\sigma^2
+    \end{Equation}
+    根据\fancyref{thm:样本方差的分布}，选取枢轴量$W$为
+    \begin{Equation}
+        W=\frac{(n-1)S^2}{\sigma^2}\sim\chi^2(n-1)
+    \end{Equation}
+    设$a,b$使得
+    \begin{Equation}
+        P\qty{a\leq\frac{(n-1)S^2}{\sigma^2}\leq b}=1-\alpha
+    \end{Equation}
+    卡方分布$\chi^2(n-1)$较为特别，不同于标准正态分布$N(0,1)$和学生氏分布$t(n-1)$，卡方分布并不是对称的分布，因此$a,b$不可能选取为一个对称区间。那$a,b$如何确定呢？我们仍可以要求$W$分布在$a$左侧和$b$右侧的概率分别为$\alpha/2$，即$a,b$之外的概率是对称的，故
+    \begin{Equation}
+        P\qty{\chi_{1-\alpha/2}^2(n-1)\leq\frac{(n-1)S^2}{\sigma^2}\leq\chi_{\alpha/2}^2(n-1)}
+    \end{Equation}
+    由此即解得双侧$1-\alpha$的置信区间为
+    \begin{Equation}
+        \qty\Bigg[\frac{(n-1)S^2}{\chi_{\alpha/2}^2(n-1)}~,~\frac{(n-1)S^2}{\chi_{1-\alpha/2}^2(n-1)}]
+    \end{Equation}
+    类似的也可以讨论单侧置信区间的情况。
+\end{Proof}

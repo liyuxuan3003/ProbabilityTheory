@@ -331,10 +331,10 @@ F分布有一个显而易见的性质，即若$F\sim F(n_1,n_2)$，则
 
 随后，让我们计算一下样本均值$\xbar{X}$和样本方差$S^2$的分布（以下假定$X$为正态总体）。
 
-\begin{BoxTheorem}[样本均值的分布]
+\begin{BoxTheorem}[样本均值在已知方差时的分布]
     设$X_1,X_2,\cdots,X_n$是来自正态总体的$X\sim N(\mu,\sigma^2)$的样本，则有
     \begin{Equation}
-        \xbar{X}\sim N(\mu,\sigma^2/n)
+        \frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)
     \end{Equation}
 \end{BoxTheorem}
 \begin{Proof}
@@ -350,8 +350,12 @@ F分布有一个显而易见的性质，即若$F\sim F(n_1,n_2)$，则
         D(\xbar{X})=\sigma^2/n        
     \end{Equation}
     因此
-    \begin{Equation}*
+    \begin{Equation}
         \xbar{X}\sim N(\mu,\sigma^2/n)\qedhere
+    \end{Equation}
+    或
+    \begin{Equation}
+        \frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\sim N(0,1)
     \end{Equation}
 \end{Proof}
 
@@ -367,7 +371,7 @@ F分布有一个显而易见的性质，即若$F\sim F(n_1,n_2)$，则
     证明从略。
 \end{Proof}
 
-\begin{BoxTheorem}[服从学生氏分布的统计量]
+\begin{BoxTheorem}[样本均值在未知方差时的分布]
     设$X_1,X_2,\cdots,X_n$是来自正态总体$X\sim N(\mu,\sigma^2)$的样本，则有
     \begin{Equation}
         \frac{\xbar{X}-\mu}{S/\sqrt{n}}\sim t(n-1)
