@@ -1,0 +1,91 @@
+\section{假设检验的基本原理}
+
+假设检验的思想其实非常简单，试想，工厂中有一台机器用于包装白砂糖，显然，白砂糖的净重不可能是特别的精确的，应视为一个随机变量，服从正态分布。已知当机器正常时，白砂糖的净重是$500$克。在开工后，为了检验机器是否正常，我们随机抽取了机器所包装的若干包白砂糖，并检测净重，作为样本。现在我们要做的，就是通过样本情况推测白砂糖净重的总体均值$\mu=500$还是$\mu\neq 500$，以判断机器是否出现故障。以假设检验的语言说，我们即提出了两个对立的假设$H_0:\mu=500$和$H_1:\mu\neq 500$，两者分别称为\uwave{原假设}（Null Hypothesis）和\uwave{备选假设}（Alternative Hypothesis）。而如果当天抽出的样本均值$\xbar{X}$接近$500$，那我们就考虑接受原假设$H_0$，相反若$\xbar{X}$偏离$500$太多，那我们就考虑拒绝原假设$H_0$，接受备选假设$H_1$。
+
+\subsection{假设的建立}
+\begin{BoxDefinition}[双边假设检验]
+    原假设和备选假设具有以下形式的，称为\uwave{双边假设检验}
+    \begin{Equation}
+        H_0:\theta=\theta_0\qquad
+        H_1:\theta\neq\theta_0
+    \end{Equation}
+\end{BoxDefinition}
+有时，原假设并非是参数恰好等于某个值，而是大于某个值或小于某个值。
+\begin{BoxDefinition}[左边假设检验]*
+    原假设和备选假设具有以下形式的，称为\uwave{左边假设检验}
+    \begin{Equation}
+        H_0:\theta\geq\theta_0\qquad
+        H_1:\theta<\theta_0
+    \end{Equation}
+    左边是指假设值$\theta_0$是原假设允许的下限（左侧限）。
+\end{BoxDefinition}
+\begin{BoxDefinition}[右边假设检验]*
+    原假设和备选假设具有以下形式的，称为\uwave{右边假设检验}
+    \begin{Equation}
+        H_0:\theta\leq\theta_0\qquad
+        H_1:\theta>\theta_0
+    \end{Equation}
+    右边是指假设值$\theta_0$是原假设允许的上限（右侧限）。
+\end{BoxDefinition}
+
+左边假设检验和右边假设检验统称为\uwave{单边假设检验}。
+
+\subsection{假设的拒绝域}
+现在的问题是，我们提出了假设，我们抽取了样本，那么，到底是接受还是拒绝假设呢？这里的决策并非是主观行为，而是一个数学过程。具体而言，由样本给出的未知参数$\theta$的点估计量$\hat{\theta}=\hat{\theta}(X_1,X_2,\cdots,X_n)$，当我们有了具体样本数据后，就可以比较$\hat{\theta}$的观测值与$\theta_0$的距离，若距离较近则接受原假设$H_0$，若距离较远则拒绝原假设$H_0$。那么怎么用数学语言描述这里的所谓“远近”呢？我们常以拒绝域的形式给出，取决于假设检验类型，拒绝域的形式不同。
+
+\begin{BoxDefinition}[双边检验的拒绝域]
+    若假设检验是双边的，即$H_0:\theta=\theta_0\leftrightarrow H_1:\theta\neq\theta_0$，则拒绝域的形式是
+    \begin{Equation}
+        C=\qty{|\hat{\theta}-\theta_0|>k}
+    \end{Equation}
+\end{BoxDefinition}
+
+\begin{BoxDefinition}[左边检验的拒绝域]
+    若假设检验是左边的，即$H_0:\theta\geq\theta_0\leftrightarrow H_1:\theta<\theta_0$，则拒绝域的形式是
+    \begin{Equation}
+        C=\qty{\hat{\theta}-\theta_0\geq k}
+    \end{Equation}
+\end{BoxDefinition}
+
+\begin{BoxDefinition}[右边检验的拒绝域]
+    若假设检验是右边的，即$H_0:\theta\leq\theta_0\leftrightarrow H_1:\theta>\theta_0$，则拒绝域的形式是
+    \begin{Equation}
+        C=\qty{\hat{\theta}-\theta_0\leq k}
+    \end{Equation}
+\end{BoxDefinition}
+
+这里临界值$k$待定。这里，$W$称为\uwave{拒绝域}，$\xbar{W}$称为\uwave{接受域}，当有了具体观测值后
+\begin{itemize}
+    \item 若$\hat{\theta}(x_1,x_2,\cdots,x_n)\in W$，落在拒绝域，则拒绝原假设$H_0$，接受备选假设$H_1$。
+    \item 若$\hat{\theta}(x_1,x_2,\cdots,x_n)\in\xbar{W}$，落在接受域，则接受原假设$H_0$，拒绝备选假设$H_1$。
+\end{itemize}
+
+\subsection{显著性水平}
+假设检验将样本数据划分为了拒绝域和接受域，通过这种划分，我们可以根据样本观测值做出一个决策：接受$H_0$或拒绝$H_0$。但是，这一决策是基于样本提供的不完全信息对未知的总体参数做出的推断，因此，总会存在不正确决策的风险。借助样本做出的决策有四种结果
+\begin{Table}[决策的四种结果]{lcc}
+    <实际情况&
+    当$\hat{\theta}\in\xbar{W}$时，接受$H_0$，拒绝$H_1$&
+    当$\hat{\theta}\in{W}$时，拒绝$H_0$，接受$H_1$\\>
+    $H_0$为真，$H_1$为假&
+    判断正确&犯第一类错误\\
+    $H_0$为假，$H_1$为真&
+    犯第二类错误&判断正确\\
+\end{Table}
+如\xref{tab:决策的四种结果}所示
+\begin{itemize}
+    \item \uwave{第一类错误}的概率（\uwave{弃真概率}）是指：原假设$H_0$为真，但错误地拒绝了$H_0$的概率。
+    \item \uwave{第二类错误}的概率（\uwave{采伪概率}）是指：原假设$H_0$为假，但错误地接受了$H_0$的概率。
+\end{itemize}
+我们总是希望第一类错误的概率和第二类错误的概率都能小些，毕竟没有人喜欢犯错误！但是，可以证明，在样本总量一定的条件下，不可能同时控制两类错误的概率（当然，若样本总量增加，那由于样本对总体的反映更为全面，两类错误的概率都将会减小）。所以呢，在此基础上，我们采用一个折中方案，仅限制第一类错误的概率不超过事先设定的值$\alpha$，$\alpha\in(0,1)$，称为\uwave{显著性水平}（Statistical Significance），在此基础上，尽量去减小第二类错误的概率。
+
+显著性水平是一个比较小的值，通常取$\alpha=0.05$，有时也会选择$\alpha=0.01$。
+
+第一类错误的概率，即弃真概率可以用$\alpha$表示为（$W$是拒绝域）
+\begin{Equation}
+    P_1=\qty{\hat{\theta}(X_1,X_2,\cdots,X_n)\in W\mid \text{$H_0$为真}}=\alpha
+\end{Equation}
+第二类错误的概率，即采伪概率可以用$\alpha$表示为（$\xbar{W}$是接受域）
+\begin{Equation}
+    P_2=\qty{\hat{\theta}(X_1,X_2,\cdots,X_n)\in\xbar{W}\mid \text{$H_0$为假}}=1-\alpha
+\end{Equation}
+由此可见，指定了显著性水平$\alpha$后，我们就可以确定拒绝域$W$中的待定系数$k$的值了。
