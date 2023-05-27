@@ -42,12 +42,12 @@
 \begin{BoxProperty}[均值在方差未知时的置信区间]
     对于正态分布，当$\sigma^2$未知时，均值$\mu$的双侧$1-\alpha$置信区间为
     \begin{Equation}
-        \qty\Bigg[\xbar{X}\pm\frac{\sigma}{\sqrt{n}}t_{\alpha/2}(n-1)]
+        \qty\Bigg[\xbar{X}\pm\frac{S}{\sqrt{n}}t_{\alpha/2}(n-1)]
     \end{Equation}
     其两个单侧$1-\alpha$置信区间为
     \begin{Equation}
-        \Biggl(-\infty~,~\xbar{X}+\frac{\sigma}{\sqrt{n}}t_\alpha(n-1)\Biggr]\qquad
-        \Biggl[\xbar{X}-\frac{\sigma}{\sqrt{n}}t_\alpha(n-1)~,~+\infty\Biggr)        
+        \Biggl(-\infty~,~\xbar{X}+\frac{S}{\sqrt{n}}t_\alpha(n-1)\Biggr]\qquad
+        \Biggl[\xbar{X}-\frac{S}{\sqrt{n}}t_\alpha(n-1)~,~+\infty\Biggr)        
     \end{Equation}
     其中$t_\alpha(n-1)$是$n-1$自由度的学生氏分布$t(n-1)$的上$\alpha$分位数。
 \end{BoxProperty}
@@ -63,15 +63,15 @@
     \end{Equation}
     设$a,b$使得
     \begin{Equation}
-        P\qty{a\leq\frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\leq b}=1-\alpha
+        P\qty{a\leq\frac{\xbar{X}-\mu}{S/\sqrt{n}}\leq b}=1-\alpha
     \end{Equation}
     完全类似的
     \begin{Equation}
-        P\qty{-t_{\alpha/2}(n-1)\leq\frac{\xbar{X}-\mu}{\sigma/\sqrt{n}}\leq t_{\alpha/2}(n-1)}=1-\alpha
+        P\qty{-t_{\alpha/2}(n-1)\leq\frac{\xbar{X}-\mu}{S/\sqrt{n}}\leq t_{\alpha/2}(n-1)}=1-\alpha
     \end{Equation}
     由此即解得双侧$1-\alpha$的置信区间为
     \begin{Equation}
-        \qty\Bigg[\xbar{X}-\frac{\sigma}{\sqrt{n}}t_{\alpha/2}(n-1)~,~\xbar{X}+\frac{\sigma}{\sqrt{n}}t_{\alpha/2}(n-1)]
+        \qty\Bigg[\xbar{X}-\frac{S}{\sqrt{n}}t_{\alpha/2}(n-1)~,~\xbar{X}+\frac{S}{\sqrt{n}}t_{\alpha/2}(n-1)]
     \end{Equation}
     类似的也可以讨论单侧置信区间的情况。
 \end{Proof}
