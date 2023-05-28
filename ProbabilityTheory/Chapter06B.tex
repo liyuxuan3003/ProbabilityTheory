@@ -83,7 +83,7 @@
     \end{Equation}
 \end{BoxDefinition}
 
-需要注意，样本$2$阶矩不再是样本方差！前者是$1/n$，后者是$1/(n-1)$。
+需要注意，样本$2$阶中心矩不再是样本方差！前者是$1/n$，后者是$1/(n-1)$。
 
 \subsection{三种重要的统计分布}
 现在的问题是，在上一小节定义的这些统计量服从何种分布？这是一个非常复杂的问题。为此在本小节，我们需要引入一些更复杂的分布，它们是之后我们讨论统计量的分布的基础。
@@ -156,7 +156,7 @@
 
 \subsubsection{学生氏分布}
 \begin{BoxDefinition}[学生氏分布]*
-    设$X\sim N(0,1)$，而$Y\sim\chi^2(n)$，且$X,Y$相互独立，则称随机变量$\chi^2$
+    设$X\sim N(0,1)$，而$Y\sim\chi^2(n)$，且$X,Y$相互独立，则称随机变量$t$
     \begin{Equation}
         t=\frac{X}{\sqrt{Y/n}}
     \end{Equation}
@@ -215,7 +215,7 @@
     \begin{Equation}
         F=\frac{U/n_1}{V/n_2}
     \end{Equation}
-    服从自由度为$n$的\uwave{F分布}，记为
+    服从自由度为$n_1,n_2$的\uwave{F分布}，记为
     \begin{Equation}
         F\sim F(n_1,n_2)
     \end{Equation}

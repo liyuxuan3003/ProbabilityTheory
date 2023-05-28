@@ -97,13 +97,13 @@
 \begin{BoxProperty}[泊松分布的归一性]
     泊松分布满足分布律的归一性要求
     \begin{Equation}
-        \Sum[k=0][\infty]\frac{\lambda^k\exp^{-k}}{k!}=1
+        \Sum[k=0][\infty]\frac{\lambda^k\e^{-\lambda}}{k!}=1
     \end{Equation}
 \end{BoxProperty}
 \begin{Proof}
-    运用指数函数$\e^{x}=1+x+x^2+\cdots$的性质即可证明
+    运用指数函数$\e^{x}=1+x+x^2/2!+\cdots$的性质即可证明
     \begin{Equation}*
-        \Sum[k=0][\infty]\frac{\lambda^k\e^{-k}}{k!}=\e^{-\lambda}\Sum[k=0][\infty]\frac{\lambda^k}{k!}=\e^{-\lambda}\e^{\lambda}=1\qedhere
+        \Sum[k=0][\infty]\frac{\lambda^k\e^{-\lambda}}{k!}=\e^{-\lambda}\Sum[k=0][\infty]\frac{\lambda^k}{k!}=\e^{-\lambda}\e^{\lambda}=1\qedhere
     \end{Equation}
 \end{Proof}
 泊松分布的引入与二项分布有些不同，二项分布是作为一类明确的试验模型，即$n$阶伯努利模型的分布律引入的，泊松分布则是直接给出的，这并无防碍，我们之后会逐渐了解泊松分布及其参数$\lambda$的意义。实际上，泊松分布与二项分布有密切关系，前者是后者的一种极限形式。
@@ -115,7 +115,7 @@
     则对于任何一个固定的非负整数$k$，有
     \begin{Equation}&[B]
         \Lim[n][\infty]\mqty(n\\ k)
-        p_n^k(1-p_n)^{n-k}=\frac{\lambda^k\e^{-k}}{k!}
+        p_n^k(1-p_n)^{n-k}=\frac{\lambda^k\e^{-\lambda}}{k!}
     \end{Equation}
 \end{BoxTheorem}
 \begin{Proof}
@@ -149,7 +149,7 @@
     因此
     \begin{Equation}*
         \Lim[n][\infty]\mqty(n\\ k)
-        p_n^k(1-p_n)^{n-k}=\frac{\lambda^k\e^{-k}}{k!}\qedhere
+        p_n^k(1-p_n)^{n-k}=\frac{\lambda^k\e^{-\lambda}}{k!}\qedhere
     \end{Equation}
 \end{Proof}
 这表明$n$很大且$p$很小的二项分布，可以近似为$\lambda=np$的泊松分布。\goodbreak

@@ -99,7 +99,7 @@
 \end{BoxDefinition}
 对于一维随机变量，其概率密度函数是概率分布的导数
 \begin{Equation}
-    f(x)=\pdv{F(x)}{x}
+    f(x)=\dv{F(x)}{x}
 \end{Equation}
 对于二维随机变量，其概率密度函数是概率分布的二阶混合偏导数
 \begin{Equation}
@@ -169,7 +169,7 @@
 离散型二维随机变量的分布律常以表格的形式呈现，如\xref{tab:离散型二维随机变量的分布律}
 \begin{Table}[离散型二维随机变量的分布律]{|c|cccc|c|}
 <>
-$p_{ij}$&$j=1$&$j=2$&$\cdots$&$j=J$&$p_{i\cdot}$\\ \hlinelig
+$p_{ij}$&$j=1$&$j=2$&$\cdots$&$j=B$&$p_{i\cdot}$\\ \hlinelig
 $i=1$&$p_{11}$&$p_{12}$&$\cdots$&$p_{1B}$&$p_{1\cdot}$\\ 
 $i=2$&$p_{21}$&$p_{12}$&$\cdots$&$p_{2B}$&$p_{2\cdot}$\\ 
 $\vdots$&$\vdots$&$\vdots$&$\ddots$&$\vdots$&$\vdots$\\
@@ -193,9 +193,9 @@ $p_{\cdot j}$&$p_{\cdot 1}$&$p_{\cdot 2}$&$\cdots$&$p_{\cdot B}$&/\\
             \frac{(y-\mu_2)^2}{\sigma_2^2}]
         }
     \end{Equation}
-    则称$(X,Y)$服从参数为$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$的\uwave{二维正态分布}，记为
+    则称$(X,Y)$服从参数为$\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho$的\uwave{二维正态分布}，记为
     \begin{Equation}
-        (X,Y)\sim N(\mu_1,\mu_2,\sigma_1,\sigma_2)
+        (X,Y)\sim N(\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho)
     \end{Equation}
 \end{BoxDefinition}
 \xref{fig:二维正态分布}绘制了典型的二维正态分布的图像，取参数$\mu_1=\mu_2=0$，$\sigma_1=\sigma_2=0.4$，$\rho=0$
@@ -204,7 +204,7 @@ $p_{\cdot j}$&$p_{\cdot 1}$&$p_{\cdot 2}$&$\cdots$&$p_{\cdot B}$&/\\
     \hspace{0.2cm}
     \includegraphics[scale=1.0]{Mathematica/output/Gauss2DColorbar.pdf}
 \end{Figure}
-二维正态分布中的参数$\mu_1,\mu_2,\sigma_1,\sigma_2,\rho$的意义与一维情形相类似，$\mu_1,\mu_2$代表了$x,y$方向上的中心（均值），$\sigma_1,\sigma_2$代表了$x,y$方向上的集中程度（方差），$\rho$则是二维正态分布中的一个新参数，它代表了$x,y$方向上的某种联系（相关系数），\xref{tab:二维正态分布的参数}以等值线表现了参数的意义，形象的说，参数$\rho$会使得图形在$45^{\circ}$方向上被拉长，同时，参数$\rho$越大图形的中心也会更高。
+二维正态分布中的参数$\mu_1,\mu_2,\sigma_1^2,\sigma_2^2,\rho$的意义与一维情形相类似，$\mu_1,\mu_2$代表了$x,y$方向上的中心（均值），$\sigma_1^2,\sigma_2^2$代表了$x,y$方向上的集中程度（方差），$\rho$则是二维正态分布中的一个新参数，它代表了$x,y$方向上的某种联系（相关系数），\xref{tab:二维正态分布的参数}以等值线表现了参数的意义，形象的说，参数$\rho$会使得图形在$45^{\circ}$方向上被拉长，同时，参数$\rho$越大图形的中心也会更高。
 
 \begin{Table}[二维正态分布的参数]{|c|c|c|c|c|}
 <>
